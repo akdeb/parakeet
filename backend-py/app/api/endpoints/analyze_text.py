@@ -1,6 +1,3 @@
-import asyncio
-import json
-import time
 from fastapi import APIRouter, HTTPException
 from app.models.text_input import TextInput
 from fastapi.responses import StreamingResponse
@@ -24,9 +21,12 @@ async def analyze_text(input: TextInput):
     try:
         response = await openai_response(input_text=input.text)
 
+        metadata = {
+            "original_text": input.text,
+            "additional_info": "Some additional metadata",
+        }
+
         # metadata = {}
-        # response = {"original_text": input.text, "analysis": metadata}
-        # return StreamingResponse(stream_processor(response), media_type="text/plain")
         return StreamingResponse(
             stream_processor(response), media_type="text/event-stream"
         )
