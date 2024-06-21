@@ -563,12 +563,36 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
     const supabase = supabaseServerClient();
     const data_ = await dbGetConversation(
         supabase,
-        "24ecc593-098e-4550-b48a-6551f837fd8b"
+        "24ecc593-098e-4550-b48a-6551f837fd8b",
     );
     console.log("+++++", data_.length, data_);
     return (
         <div>
-            What you should do
+            <div className="mt-2 mb-4 text-gray-800">
+                What you should do: (placeholder) This is a fairly simple
+                process to generate the the composable charts. We have to create
+                a main component like Bar chart and layers attribute provides
+                the composable structure to add elements to the Chart. This
+                approach has some limitations as well: Manage the scaling and
+                placement of elements on the chart canvas explicitly. No default
+                tooltips for the generated SVG components.
+            </div>
+
+            <div className="flex justify-center w-full mb-2">
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-200 text-rose-700 rounded-l-[15px]">
+                    Days
+                </button>
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-50 text-rose-400 hover:bg-rose-100">
+                    Weeks
+                </button>
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-50 text-rose-400 hover:bg-rose-100">
+                    Months
+                </button>
+                <button className="w-[72px] py-1 px-2 bg-rose-50 text-rose-400 rounded-r-[15px] hover:bg-rose-100">
+                    All
+                </button>
+            </div>
+
             <div className="flex flex-col md:flex-row md:space-x-4">
                 <div className="w-full">
                     <h2 className="my-4 text-lg font-bold text-gray-700">
