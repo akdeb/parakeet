@@ -32,11 +32,11 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
                         href={item.href}
                         className={cn(
                             buttonVariants({ variant: "ghost" }),
-                            pathname === item.href ? "bg-pink-50" : "",
+                            pathname === item.href ? "bg-amber-100" : "",
                             // pathname === item.href
                             //     ? "bg-muted hover:bg-muted"
                             //     : "hover:bg-transparent hover:underline",
-                            "justify-start rounded-2xl sm:text-xl text-lg font-baloo2 text-pink-700"
+                            "justify-start rounded-2xl sm:text-xl text-lg font-baloo2 text-amber-700"
                         )}
                     >
                         {item.title}

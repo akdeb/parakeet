@@ -66,7 +66,7 @@ const favorit = localFont({
 const fonts = `${inter.variable} ${baloo2.variable} ${comicNeue.variable} ${quicksand.variable} ${chewy.variable} ${fredoka.variable} ${favorit.variable}`;
 
 export const viewport: Viewport = {
-    themeColor: "#000000",
+    themeColor: "#fef3c7",
     initialScale: 1,
     width: "device-width",
     // maximumScale: 1, hitting accessability
@@ -96,11 +96,11 @@ export default async function RootLayout({
     return (
         <html lang="en" className={`h-dvh ${fonts}`}>
             <body className={`h-full`}>
-                <div className="bg-[#fff0f3] h-[4rem] flex items-center">
+                <div className="bg-amber-50 h-[4rem] flex items-center">
                     <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-between">
                         <div className="flex flex-row gap-1">
                             <a
-                                className="flex items-center font-extrabold font-quicksand text-4xl text-pink-600"
+                                className="flex items-center font-extrabold font-quicksand text-4xl text-amber-600"
                                 href="/"
                             >
                                 Parakeet AI

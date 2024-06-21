@@ -6,7 +6,6 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import React, { useCallback } from "react";
-import { constructUserPrompt } from "@/lib/utils";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { dbInsertConversation } from "@/db/conversations";
 import { Bird } from "lucide-react";
@@ -29,9 +28,9 @@ const StartCall: React.FC<StartCallProps> = ({ selectedUser, selectedToy }) => {
     } = useVoice();
     const supabase = createClientComponentClient();
 
-    const userPrompt = selectedUser
-        ? constructUserPrompt(selectedUser)
-        : "You are talking to a young child who is 10 years old.";
+    // const userPrompt = selectedUser
+    //     ? constructUserPrompt(selectedUser)
+    //     : "You are talking to a young child who is 10 years old.";
 
     const insertConversation = useCallback(
         async (message: AssistantTranscriptMessage | UserTranscriptMessage) => {
@@ -91,14 +90,7 @@ const StartCall: React.FC<StartCallProps> = ({ selectedUser, selectedToy }) => {
                             className={"z-50 flex items-center gap-1.5"}
                             onClick={() => {
                                 connect()
-                                    .then(() => {
-                                        // sendSessionSettings({
-                                        //     systemPrompt: userPrompt,
-                                        // });
-                                        sendUserInput(
-                                            `My name is ${selectedUser?.child_name}`
-                                        );
-                                    })
+                                    .then(() => {})
                                     .catch(() => {})
                                     .finally(() => {});
                             }}

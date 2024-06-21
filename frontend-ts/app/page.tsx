@@ -3,6 +3,9 @@ import Products from "./components/Products";
 import supabaseServerClient from "@/db/supabaseServerClient";
 import { getAllToys, getToyById } from "@/db/toys";
 import { defaultToyId } from "@/lib/data";
+import { getUserById, updateUser } from "@/db/users";
+import { redirect } from "next/navigation";
+import ToyPicker from "./components/ToyPicker";
 
 export default async function Home() {
     const accessToken = await getHumeAccessToken();
@@ -18,6 +21,7 @@ export default async function Home() {
 
     console.log(user);
 
+    const dbUser = await getUserById(supabase, user!.id);
     const allToys = await getAllToys(supabase);
     const toy = await getToyById(supabase, defaultToyId);
 
@@ -36,7 +40,7 @@ export default async function Home() {
                             learning & growth.
                         </p>
                     </div>
-                    <Products allToys={allToys} toy={toy!} />
+                    <Products allToys={allToys} toy={toy!} user={dbUser} />
                 </div>
             </main>
         </div>

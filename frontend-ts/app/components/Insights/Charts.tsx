@@ -563,7 +563,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
     const supabase = supabaseServerClient();
     const data_ = await dbGetConversation(
         supabase,
-        "24ecc593-098e-4550-b48a-6551f837fd8b",
+        "24ecc593-098e-4550-b48a-6551f837fd8b"
     );
     console.log("+++++", data_.length, data_);
     return (
@@ -579,16 +579,16 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             </div>
 
             <div className="flex justify-center w-full mb-2">
-                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-400 text-white rounded-l-[15px]">
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-amber-400 text-white rounded-l-[15px]">
                     Days
                 </button>
-                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-50 text-rose-400 hover:bg-rose-100">
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-amber-50 text-amber-500 hover:bg-amber-100">
                     Weeks
                 </button>
-                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-50 text-rose-400 hover:bg-rose-100">
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-amber-50 text-amber-500 hover:bg-amber-100">
                     Months
                 </button>
-                <button className="w-[72px] py-1 px-2 bg-rose-50 text-rose-400 rounded-r-[15px] hover:bg-rose-100">
+                <button className="w-[72px] py-1 px-2 bg-amber-50 text-amber-500 rounded-r-[15px] hover:bg-amber-100">
                     All
                 </button>
             </div>
