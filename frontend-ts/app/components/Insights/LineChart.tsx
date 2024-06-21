@@ -17,7 +17,7 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
     <ResponsiveLine
         curve="natural"
         lineWidth={3}
-        margin={{ top: 20, right: 10, bottom: 68, left: 45 }}
+        margin={{ top: 20, right: 15, bottom: 68, left: 45 }}
         data={data}
         xScale={{ type: "linear", min: 0, max: "auto" }}
         yScale={{ type: "linear" }}
@@ -63,11 +63,11 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
                 anchor: "bottom",
                 direction: "row",
                 justify: false,
-                translateX: 0,
+                translateX: -20,
                 translateY: 69,
-                itemsSpacing: 5,
+                itemsSpacing: 10,
                 itemDirection: "left-to-right",
-                itemWidth: 90,
+                itemWidth: 65,
                 itemHeight: 20,
                 itemOpacity: 0.75,
                 symbolSize: 16,

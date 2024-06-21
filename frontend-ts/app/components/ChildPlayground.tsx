@@ -24,7 +24,7 @@ const ChildPlayground: React.FC<{
                         className={`flex flex-col max-w-[300px] max-h-[300px] gap-2 mb-4 rounded-2xl overflow-hidden transition-colors duration-200 ease-in-out`}
                     >
                         <Image
-                            src={"/" + selectedToy.image_src! + ".png"}
+                            src={"/" + selectedToy.image_src! + "_avatar.png"}
                             width={IMAGE_SIZE}
                             height={IMAGE_SIZE}
                             alt={selectedToy.name}

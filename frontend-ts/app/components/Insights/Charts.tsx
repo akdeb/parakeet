@@ -419,7 +419,7 @@ const lineData = [
         ],
     },
     {
-        id: "Negative-P",
+        id: "Neg-P",
         name: "Negative-Prediction",
         data: [
             {
@@ -471,7 +471,7 @@ const lineData = [
         ],
     },
     {
-        id: "Neutral-P",
+        id: "Neu-P",
         name: "Neutral-Prediction",
         data: [
             {
@@ -523,7 +523,7 @@ const lineData = [
         ],
     },
     {
-        id: "Postive-P",
+        id: "Pos-P",
         name: "Postive-Prediction",
         data: [
             {
@@ -579,7 +579,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             </div>
 
             <div className="flex justify-center w-full mb-2">
-                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-200 text-rose-700 rounded-l-[15px]">
+                <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-400 text-white rounded-l-[15px]">
                     Days
                 </button>
                 <button className="w-[72px] mr-[1px] py-1 px-2 bg-rose-50 text-rose-400 hover:bg-rose-100">
@@ -601,19 +601,19 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <div className="flex space-x-4">
                         <div className="flex-grow">
                             <TopCard
-                                title="Happiness"
+                                title="Joy"
                                 value="12.9%"
                                 delta={11.2}
-                                day={7}
+                                day={1}
                                 type="top"
                             />
                         </div>
                         <div className="flex-grow">
                             <TopCard
-                                title="Relief"
+                                title="Excitement"
                                 value="12.1%"
                                 delta={-2.8}
-                                day={7}
+                                day={1}
                                 type="top"
                             />
                         </div>
@@ -630,7 +630,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title="Anger"
                                 value="5.9%"
                                 delta={15.8}
-                                day={7}
+                                day={1}
                                 type="shift"
                             />
                         </div>
@@ -639,7 +639,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title="Disappointment"
                                 value="3.2%"
                                 delta={-5.4}
-                                day={7}
+                                day={1}
                                 type="shift"
                             />
                         </div>
@@ -651,7 +651,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
                         Emotions Over Time and Forecast
                     </h2>
-                    <div className="h-96">
+                    <div className="h-[300px] lg:h-96">
                         <MyResponsiveLine data={lineData} />
                     </div>
                 </div>
@@ -660,7 +660,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
                         Current Emotions Proportions
                     </h2>
-                    <div className="h-96">
+                    <div className="h-[300px] lg:h-96">
                         <MyResponsivePie data={pieData} />
                     </div>
                 </div>
@@ -669,7 +669,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
                     Emotions Breakdown (left-right scrolling + sheet)
                 </h2>
-                <div className="h-[200px] md:h-[300px] lg:h-[400px]">
+                <div className="h-[300px] lg:h-[400px]">
                     <MyResponsiveBar data={data} />
                 </div>
             </div>
