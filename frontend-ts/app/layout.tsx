@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import supabaseServerClient from "@/db/supabaseServerClient";
 import NavbarButtons from "./components/NavbarButtons";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "./components/Footer";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -95,7 +96,7 @@ export default async function RootLayout({
 
     return (
         <html lang="en" className={`h-dvh ${fonts}`}>
-            <body className={`h-full`}>
+            <body>
                 <div className="bg-amber-50 h-[4rem] flex items-center">
                     <header className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-between">
                         <div className="flex flex-row gap-1">
@@ -110,12 +111,15 @@ export default async function RootLayout({
                         <NavbarButtons user={user} />
                     </header>
                 </div>
-                <MicrophoneContextProvider>
-                    <DeepgramContextProvider>
-                        {children}
-                    </DeepgramContextProvider>
-                </MicrophoneContextProvider>
+                <div className="min-h-screen flex-1">
+                    <MicrophoneContextProvider>
+                        <DeepgramContextProvider>
+                            {children}
+                        </DeepgramContextProvider>
+                    </MicrophoneContextProvider>
+                </div>
                 <Toaster />
+                <Footer />
             </body>
         </html>
     );

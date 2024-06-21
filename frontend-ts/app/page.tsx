@@ -4,8 +4,9 @@ import supabaseServerClient from "@/db/supabaseServerClient";
 import { getAllToys, getToyById } from "@/db/toys";
 import { defaultToyId } from "@/lib/data";
 import { getUserById, updateUser } from "@/db/users";
-import { redirect } from "next/navigation";
-import ToyPicker from "./components/ToyPicker";
+// import { redirect } from "next/navigation";
+// import ToyPicker from "./components/ToyPicker";
+import Preorder from "./components/Preorder";
 
 export default async function Home() {
     const accessToken = await getHumeAccessToken();
@@ -26,7 +27,7 @@ export default async function Home() {
     const toy = await getToyById(supabase, defaultToyId);
 
     return (
-        <div className="h-full font-quicksand">
+        <div className="flex-1 font-quicksand">
             {/* height 4rem */}
 
             <main className="mx-auto px-4 md:px-6 mt-6 lg:px-8 h-[calc(100%-4rem)] -mb-[4rem]">
@@ -41,6 +42,7 @@ export default async function Home() {
                         </p>
                     </div>
                     <Products allToys={allToys} toy={toy!} user={dbUser} />
+                    <Preorder />
                 </div>
             </main>
         </div>

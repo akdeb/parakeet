@@ -43,12 +43,12 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
                                     width={600}
                                     height={600}
                                     alt={toy.name}
-                                    className="transition-transform duration-300 ease-in-out scale-90 transform hover:scale-100"
+                                    className="transition-transform duration-300 ease-in-out scale-90 transform hover:scale-100 hover:-rotate-2"
                                 />
                             </div>
                             <div className="flex flex-col gap-3 items-center text-center">
                                 <div
-                                    className={`font-baloo2 text-2xl font-normal`}
+                                    className={`font-baloo2 text-2xl font-medium`}
                                 >
                                     {toy.name}
                                 </div>
