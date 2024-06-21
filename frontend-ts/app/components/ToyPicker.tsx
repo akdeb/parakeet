@@ -39,8 +39,8 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
                             >
                                 <Image
                                     src={"/" + toy.image_src! + ".png"}
-                                    width={imageSize}
-                                    height={imageSize}
+                                    width={600}
+                                    height={600}
                                     alt={toy.name}
                                     className="transition-transform duration-300 ease-in-out scale-90 transform hover:scale-100"
                                 />

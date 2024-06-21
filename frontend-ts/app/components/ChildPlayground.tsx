@@ -25,8 +25,8 @@ const ChildPlayground: React.FC<{
                     >
                         <Image
                             src={"/" + selectedToy.image_src! + "_avatar.png"}
-                            width={IMAGE_SIZE}
-                            height={IMAGE_SIZE}
+                            width={250}
+                            height={200}
                             alt={selectedToy.name}
                             className="transition-transform duration-300 ease-in-out scale-90 transform hover:scale-100"
                         />
