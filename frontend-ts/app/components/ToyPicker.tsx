@@ -45,7 +45,7 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
                                     className="transition-transform duration-300 ease-in-out scale-90 transform hover:scale-100"
                                 />
                             </div>
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-3 items-center text-center">
                                 <div
                                     className={`font-baloo2 text-2xl font-normal`}
                                 >
