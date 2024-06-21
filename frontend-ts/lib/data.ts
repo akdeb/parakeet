@@ -19,7 +19,7 @@ export const toys: IToy[] = [
         hume_ai_config_id: "2eab6067-5583-47f9-8850-005ceb08935b",
         image_src: "/coco2.png",
         third_person_prompt:
-            "Coco is a plushie connoisseur of comfort, radiating warmth and coziness. His soft, chocolatey fur invites endless cuddles, and his calming presence is perfect for snuggling up on rainy days.",
+            "Coco is a plushie connoisseur of comfort, radiating warmth and coziness. Her soft, chocolatey fur invites endless cuddles, and her calming presence is perfect for snuggling up on rainy days.",
     },
     {
         toy_id: "14d91296-eb6b-41d7-964c-856a8614d80e",
