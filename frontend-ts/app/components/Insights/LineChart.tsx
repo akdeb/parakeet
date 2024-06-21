@@ -15,7 +15,7 @@ type MyResponsiveLineProps = {
 
 export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
     <ResponsiveLine
-        curve="monotoneX"
+        curve="natural"
         lineWidth={3}
         margin={{ top: 20, right: 10, bottom: 68, left: 45 }}
         data={data}
@@ -51,12 +51,12 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
         enableTouchCrosshair={true}
         useMesh={true}
         colors={[
-            "#8b5cf6",
-            "#DACAFE",
+            "#fb7185",
+            "#FCCCD4",
+            "#a8a29e",
+            "#e7e5e4",
             "#22c55e",
             "#CCFBDD",
-            "#f43f5e",
-            "#FCCCD4",
         ]}
         legends={[
             {

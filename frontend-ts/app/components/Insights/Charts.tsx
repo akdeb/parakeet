@@ -41,14 +41,14 @@ export const pieData: PieChartData[] = [
         value: 60.0,
     },
     {
-        id: "Negative",
-        label: "Negative",
-        value: 24.5,
-    },
-    {
         id: "Neutral",
         label: "Neutral",
         value: 15.5,
+    },
+    {
+        id: "Negative",
+        label: "Negative",
+        value: 24.5,
     },
 ];
 
@@ -390,11 +390,11 @@ const lineData = [
         data: [
             {
                 x: 0,
-                y: 7,
+                y: 8,
             },
             {
                 x: 1,
-                y: 5,
+                y: 10,
             },
             {
                 x: 2,
@@ -402,15 +402,15 @@ const lineData = [
             },
             {
                 x: 3,
-                y: 12,
+                y: 9,
             },
             {
                 x: 4,
-                y: 13,
+                y: 6,
             },
             {
                 x: 5,
-                y: 14,
+                y: 10,
             },
             {
                 x: 6,
@@ -428,63 +428,11 @@ const lineData = [
             },
             {
                 x: 7,
-                y: 10,
-            },
-            {
-                x: 8,
-                y: 15,
-            },
-        ],
-    },
-    {
-        id: "Postive",
-        name: "Postive",
-        data: [
-            {
-                x: 0,
-                y: 8,
-            },
-            {
-                x: 1,
-                y: 12,
-            },
-            {
-                x: 2,
                 y: 13,
             },
             {
-                x: 3,
-                y: 14,
-            },
-            {
-                x: 4,
-                y: 16,
-            },
-            {
-                x: 5,
-                y: 19,
-            },
-            {
-                x: 6,
-                y: 18,
-            },
-        ],
-    },
-    {
-        id: "Postive-P",
-        name: "Postive-Prediction",
-        data: [
-            {
-                x: 6,
-                y: 18,
-            },
-            {
-                x: 7,
-                y: 12,
-            },
-            {
                 x: 8,
-                y: 13,
+                y: 9,
             },
         ],
     },
@@ -537,6 +485,58 @@ const lineData = [
             {
                 x: 8,
                 y: 12,
+            },
+        ],
+    },
+    {
+        id: "Postive",
+        name: "Postive",
+        data: [
+            {
+                x: 0,
+                y: 10,
+            },
+            {
+                x: 1,
+                y: 12,
+            },
+            {
+                x: 2,
+                y: 13,
+            },
+            {
+                x: 3,
+                y: 12,
+            },
+            {
+                x: 4,
+                y: 16,
+            },
+            {
+                x: 5,
+                y: 14,
+            },
+            {
+                x: 6,
+                y: 17,
+            },
+        ],
+    },
+    {
+        id: "Postive-P",
+        name: "Postive-Prediction",
+        data: [
+            {
+                x: 6,
+                y: 17,
+            },
+            {
+                x: 7,
+                y: 16,
+            },
+            {
+                x: 8,
+                y: 17,
             },
         ],
     },

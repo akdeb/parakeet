@@ -121,6 +121,6 @@ export const MyResponsivePie: FC<MyResponsivePieProps> = ({ data }) => (
             },
         ]}
         theme={theme} // Apply the theme here
-        colors={["#fb7185", "#60a5fa", "#d6d3d1"]}
+        colors={["#4ade80", "#d6d3d1", "#fb7185"]}
     />
 );
