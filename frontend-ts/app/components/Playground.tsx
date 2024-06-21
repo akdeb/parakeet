@@ -6,6 +6,7 @@ import Messages from "./Messages";
 import { VoiceProvider } from "@humeai/voice-react";
 import Controls from "./Controls";
 import StartCall from "./StartCall";
+import { constructUserPrompt } from "@/lib/utils";
 
 interface PlaygroundProps {
     selectedUser: IUser;
@@ -25,7 +26,10 @@ const Playground: React.FC<PlaygroundProps> = ({
         <>
             <VoiceProvider
                 auth={{ type: "accessToken", value: accessToken }}
-                onMessage={() => {
+                onClose={(args) => {
+                    console.log("onClose", args);
+                }}
+                onMessage={(message) => {
                     if (timeout.current) {
                         window.clearTimeout(timeout.current);
                     }
@@ -45,6 +49,13 @@ const Playground: React.FC<PlaygroundProps> = ({
                     selectedToy?.hume_ai_config_id ??
                     "6947ac53-5f3b-4499-abc5-f8b368552cb6"
                 }
+                sessionSettings={{
+                    systemPrompt: constructUserPrompt(
+                        selectedUser,
+                        selectedToy
+                    ),
+                }}
+                // resumedChatGroupId=""
             >
                 <div className="flex flex-row items-center gap-4">
                     <h1 className="text-4xl font-semibold">Playground</h1>

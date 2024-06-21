@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { toys } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface ToyPickerProps {
-    currentToy: IToy;
+    currentToy?: IToy;
     chooseToy: (toy: IToy) => void;
     allToys: IToy[];
     imageSize: number;
@@ -20,7 +21,7 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
     buttonText,
     showCurrent,
 }) => {
-    const [selectedToy, setSelectedToy] = useState<IToy>(currentToy);
+    const [selectedToy, setSelectedToy] = useState<IToy>(currentToy ?? toys[0]);
 
     const onClickSelectedToy = (toy: IToy) => {
         setSelectedToy(toy);
