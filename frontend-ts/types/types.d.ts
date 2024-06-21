@@ -33,15 +33,29 @@ declare global {
 
     type Module = "math" | "science" | "spelling" | "general_trivia";
 
-    type BarChartData = {
-        country: string;
-        "hot dog": number;
-        burger: number;
-        sandwich: number;
-        kebab: number;
-        fries: number;
-        donut: number;
+    type BarChartData = Any;
+
+    type PieChartData = {
+        id: string;
+        label: string;
+        value: number;
     };
+
+    interface DataPoint {
+        x: string;
+        y: number;
+    }
+
+    interface HeatMapData {
+        id: string;
+        data: DataPoint[];
+    }
+
+    interface LineChartData {
+        id: any;
+        name: string;
+        data: any;
+    }
 }
 
 export {}; // This is necessary to make this file a module and avoid TypeScript errors.
