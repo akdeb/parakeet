@@ -8,7 +8,7 @@ import { MyResponsiveLine } from "./LineChart";
 
 export const data: BarChartData[] = [
     {
-        country: "Entrancement",
+        country: "Joy",
         "Current Period": 200,
         "Previou Period": 93,
     },
@@ -28,7 +28,7 @@ export const data: BarChartData[] = [
         "Previou Period": 107,
     },
     {
-        country: "Contempt",
+        country: "Confusion",
         "Current Period": 145,
         "Previou Period": 26,
     },
@@ -667,10 +667,10 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             </div>
             <div className="w-full">
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
-                    Emotion Correlations
+                    Emotions Breakdown (left-right scrolling + sheet)
                 </h2>
-                <div className="h-[600px] md:h-[700px] lg:h-[800px]">
-                    <MyResponsiveHeatMap data={HeatMapData} />
+                <div className="h-[200px] md:h-[300px] lg:h-[400px]">
+                    <MyResponsiveBar data={data} />
                 </div>
             </div>
         </div>
