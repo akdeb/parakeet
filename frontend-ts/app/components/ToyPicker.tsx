@@ -61,7 +61,7 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
                                             onClick={() => {
                                                 chooseToy(toy);
                                             }}
-                                            variant="pink"
+                                            variant="primary"
                                             className="font-bold text-lg flex flex-row gap-2 items-center"
                                         >
                                             <span>{buttonText}</span>

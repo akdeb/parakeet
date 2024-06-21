@@ -20,7 +20,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
             <Link href="/home">
                 {isDesktop ? (
                     <Button
-                        variant="pink"
+                        variant="primary"
                         size="sm"
                         className="font-bold flex flex-row items-center gap-2"
                     >
@@ -28,7 +28,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
                         Home
                     </Button>
                 ) : (
-                    <Button variant="pink" size="icon">
+                    <Button variant="primary" size="icon">
                         <Home size={ICON_SIZE} strokeWidth={STROKE_WIDTH} />
                     </Button>
                 )}
@@ -54,7 +54,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
         <Link href="/login">
             {isDesktop ? (
                 <Button
-                    variant="pink"
+                    variant="primary"
                     size="sm"
                     className="font-bold flex flex-row items-center gap-2"
                 >
@@ -62,7 +62,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
                     Login
                 </Button>
             ) : (
-                <Button variant="pink" size="icon">
+                <Button variant="primary" size="icon">
                     <LogIn size={ICON_SIZE} strokeWidth={STROKE_WIDTH} />
                 </Button>
             )}
