@@ -27,10 +27,11 @@ declare global {
         hume_ai_config_id: string;
         prompt: string;
         third_person_prompt: string;
+        expanded_prompt: string;
         image_src?: string;
     }
 
-    type Module = "MATH" | "GENERAL_TRIVIA" | "SPELLING" | "SCIENCE";
+    type Module = "math" | "science" | "spelling" | "general_trivia";
 
     type BarChartData = {
         country: string;

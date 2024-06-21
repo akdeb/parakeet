@@ -18,6 +18,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import supabaseServerClient from "@/db/supabaseServerClient";
 import NavbarButtons from "./components/NavbarButtons";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -114,6 +115,7 @@ export default async function RootLayout({
                         {children}
                     </DeepgramContextProvider>
                 </MicrophoneContextProvider>
+                <Toaster />
             </body>
         </html>
     );

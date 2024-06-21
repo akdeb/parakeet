@@ -1,6 +1,27 @@
 "use client";
 
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import ToyPicker from "./ToyPicker";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
+import { updateUser } from "@/db/users";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect } from "react";
 
 interface ParentDashboardProps {
     selectedUser: IUser | null;
@@ -10,106 +31,217 @@ interface ParentDashboardProps {
     allToys: IToy[];
 }
 
+export const parentDashboardSchema = z.object({
+    child_name: z.string().min(1).max(50),
+    child_persona: z.string().max(500).optional(),
+    modules: z
+        .array(z.enum(["math", "science", "spelling", "general_trivia"]))
+        .refine((value) => value.some((item) => item), {
+            message: "You have to select at least one item.",
+        }),
+});
+
+const learningModules = [
+    {
+        id: "math",
+        label: "Math",
+    },
+    {
+        id: "science",
+        label: "Science",
+    },
+    {
+        id: "spelling",
+        label: "Spelling",
+    },
+    {
+        id: "general_trivia",
+        label: "General trivia",
+    },
+] as { id: Module; label: string }[];
+
+export type ParentFormInput = z.infer<typeof parentDashboardSchema>;
+
 const ParentDashboard: React.FC<ParentDashboardProps> = ({
     selectedUser,
     selectedToy,
     allToys,
 }) => {
-    // const [displayUsers, setDisplayUsers] = useState<IUser[]>(users);
-    // useEffect(() => {
-    //     if (selectedUser) {
-    //         setDisplayUsers([
-    //             selectedUser,
-    //             ...users.filter(
-    //                 (user) => user.user_id !== selectedUser.user_id
-    //             ),
-    //         ]);
-    //     }
-    // }, [selectedUser]);
+    const supabase = createClientComponentClient();
+    const { toast } = useToast();
+    const form = useForm<ParentFormInput>({
+        defaultValues: {
+            child_name: selectedUser?.child_name ?? "",
+            child_persona: selectedUser?.child_persona ?? "",
+            modules: selectedUser?.modules ?? [],
+        },
+    });
+
+    async function onSubmit(values: z.infer<typeof parentDashboardSchema>) {
+        await updateUser(supabase, values, selectedUser!.user_id);
+        toast({
+            description: "Your prefereces have been saved.",
+        });
+    }
+
+    const pickToy = async (toy: IToy) => {
+        // chooseToy(toy);
+        await updateUser(
+            supabase,
+            { toy_id: toy.toy_id },
+            selectedUser!.user_id
+        );
+        toast({
+            description: "Your plushie has been saved.",
+        });
+    };
+
     return (
-        <div className="p-4 overflow-hidden w-full flex-auto">
-            {/* <p>Parent dashboard (choose your characters)</p> */}
-            {/* <div className="flex mt-2 flex-row gap-2 items-center justify-center">
-                {toys.map((toy) => {
-                    const chosen = selectedToy?.toy_id === toy.toy_id;
-                    return (
-                        <HoverCard key={toy.toy_id}>
-                            <HoverCardTrigger asChild>
-                                <div
-                                    key={toy.toy_id}
-                                    className={`flex flex-col border gap-2 p-2 mb-4 hover:shadow-md rounded-md cursor-pointer ${
-                                        chosen ? "bg-slate-100 shadow-lg" : ""
-                                    } transition-colors duration-200 ease-in-out`}
-                                    onClick={() => chooseToy(toy)}
-                                >
-                                    <Image
-                                        src={toy.image_src!}
-                                        width={200}
-                                        height={200}
-                                        alt={toy.name}
+        <div className="overflow-hidden w-full flex-auto flex flex-col font-quicksand pl-1">
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-col gap-8 mb-4"
+                >
+                    <div className="flex flex-row gap-4 items-center font-baloo2">
+                        <h1 className="text-4xl font-semibold">
+                            Parent controls
+                        </h1>
+                        <div className="flex flex-row gap-2 justify-between items-center">
+                            <Button variant="default" size="sm" type="submit">
+                                Save
+                            </Button>
+                        </div>
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="child_name"
+                        render={({ field }) => (
+                            <FormItem className="w-full rounded-md">
+                                <FormLabel className="flex flex-row gap-4 items-center">
+                                    Child name
+                                </FormLabel>
+                                {/* <FormDescription>
+                            Give your newsletter a name that describes its
+                            content.
+                        </FormDescription> */}
+                                <FormControl>
+                                    <Input
+                                        // autoFocus
+                                        required
+                                        placeholder="e.g. Cosmo"
+                                        {...field}
+                                        className="max-w-screen-sm h-10 bg-white"
+                                        autoComplete="on"
+                                        style={{
+                                            fontSize: 16,
+                                        }}
                                     />
-                                    <div className="font-bold">{toy.name}</div>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="child_persona"
+                        render={({ field }) => (
+                            <FormItem className="w-full rounded-md">
+                                <FormLabel className="flex flex-row gap-4 items-center">
+                                    Briefly describe your child&apos;s
+                                    interests, personality, and learning style
+                                </FormLabel>
+                                <FormControl>
+                                    <Textarea
+                                        rows={4}
+                                        placeholder="e.g. I would like the plushie to be friendly and encouraging, and to use positive reinforcement to help my child learn."
+                                        {...field}
+                                        className="max-w-screen-sm bg-white"
+                                        autoComplete="on"
+                                        style={{
+                                            fontSize: 16,
+                                        }}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="modules"
+                        render={() => (
+                            <FormItem>
+                                <div className="mb-4">
+                                    <FormLabel className="text-base">
+                                        Sidebar
+                                    </FormLabel>
+                                    <FormDescription>
+                                        Select your learning modules
+                                    </FormDescription>
                                 </div>
-                            </HoverCardTrigger>
-                            <HoverCardContent className="w-80">
-                                <div className="p-4">
-                                    <div className="font-bold">{toy.name}</div>
-                                    <div className="text-gray-600">
-                                        {toy.prompt}
-                                    </div>
-                                </div>
-                            </HoverCardContent>
-                        </HoverCard>
-                    );
-                })}
-            </div> */}
-            {/* <div className="flex flex-row gap-2 h-full py-4">
-                <ScrollArea>
-                    {displayUsers.map((user) => {
-                        const chosen = selectedUser?.user_id === user.user_id;
-                        return (
-                            <div
-                                key={user.user_id}
-                                className={`flex flex-col gap-2 mr-3 border p-2 mb-4 hover:shadow-md rounded-md cursor-pointer ${
-                                    chosen ? "bg-slate-100 shadow-lg" : ""
-                                } transition-colors duration-200 ease-in-out`}
-                                onClick={() => chooseUser(user)}
-                            >
-                                <div className="font-bold">
-                                    {user.child_name}
-                                </div>
-                                <div className="text-gray-600">
-                                    {user.parent_name}
-                                </div>
-                                <div className="text-gray-500 text-sm">
-                                    {user.child_persona}
-                                </div>
-                                <div className="text-gray-400 text-xs">
-                                    {user.child_age} years old
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    {user.modules.map((module, index) => {
-                                        return (
-                                            <Badge
-                                                key={index}
-                                                // variant="defaul"
-                                            >
-                                                {module}
-                                            </Badge>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </ScrollArea>
-            </div> */}
+                                {learningModules.map((item) => (
+                                    <FormField
+                                        key={item.id}
+                                        control={form.control}
+                                        name="modules"
+                                        render={({ field }) => {
+                                            return (
+                                                <FormItem
+                                                    key={item.id}
+                                                    className="flex flex-row items-center space-x-3 space-y-0"
+                                                >
+                                                    <FormControl>
+                                                        <Checkbox
+                                                            checked={field.value?.includes(
+                                                                item.id
+                                                            )}
+                                                            onCheckedChange={(
+                                                                checked
+                                                            ) => {
+                                                                return checked
+                                                                    ? field.onChange(
+                                                                          [
+                                                                              ...field.value,
+                                                                              item.id,
+                                                                          ]
+                                                                      )
+                                                                    : field.onChange(
+                                                                          field.value?.filter(
+                                                                              (
+                                                                                  value
+                                                                              ) =>
+                                                                                  value !==
+                                                                                  item.id
+                                                                          )
+                                                                      );
+                                                            }}
+                                                        />
+                                                    </FormControl>
+                                                    <FormLabel className="font-normal">
+                                                        {item.label}
+                                                    </FormLabel>
+                                                </FormItem>
+                                            );
+                                        }}
+                                    />
+                                ))}
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </form>
+            </Form>
+            <Separator />
+            <Label className="text-md mt-4 font-semibold">
+                Pick your plushie
+            </Label>
             <ToyPicker
                 allToys={allToys}
                 currentToy={selectedToy}
                 buttonText={"Pick"}
                 imageSize={200}
-                chooseToy={() => {}}
+                chooseToy={pickToy}
                 showCurrent={true}
             />
         </div>

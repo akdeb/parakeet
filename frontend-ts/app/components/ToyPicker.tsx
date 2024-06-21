@@ -24,7 +24,6 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
 
     const onClickSelectedToy = (toy: IToy) => {
         setSelectedToy(toy);
-        chooseToy(toy);
     };
 
     return (
@@ -58,6 +57,9 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
                                             {toy.third_person_prompt}
                                         </div>
                                         <Button
+                                            onClick={() => {
+                                                chooseToy(toy);
+                                            }}
                                             variant="pink"
                                             className="font-bold text-lg flex flex-row gap-2 items-center"
                                         >

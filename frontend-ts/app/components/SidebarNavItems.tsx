@@ -19,7 +19,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
     return (
         <nav
             className={cn(
-                "flex space-x-2 justify-center lg:flex-col lg:space-x-0 lg:space-y-6 rounded-xl",
+                "flex space-x-2 justify-center sm:justify-start lg:flex-col lg:space-x-0 lg:space-y-6 rounded-xl",
                 className
             )}
             {...props}
@@ -36,7 +36,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
                             // pathname === item.href
                             //     ? "bg-muted hover:bg-muted"
                             //     : "hover:bg-transparent hover:underline",
-                            "justify-start rounded-2xl text-xl font-baloo2 text-pink-700"
+                            "justify-start rounded-2xl sm:text-xl text-lg font-baloo2 text-pink-700"
                         )}
                     >
                         {item.title}

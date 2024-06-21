@@ -11,7 +11,7 @@ const sidebarNavItems = [
         href: "/home/track",
     },
     {
-        title: "Parent controls",
+        title: "For parents",
         href: "/home/parent",
     },
 ];
