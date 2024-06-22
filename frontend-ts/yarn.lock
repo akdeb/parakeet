@@ -295,7 +295,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@humeai/voice-react@^0.1.7":
+"@humeai/voice-react@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@humeai/voice-react/-/voice-react-0.1.8.tgz#08d9b003ed97ff0dab0fc03e1dbce22506c37415"
   integrity sha512-V+mHvhlju9nbKLHAhEGYL0x8/7DpdzfZg7OP9w2zpT+3oEct8MZKvHaESsNDpD0ld4f3sCNHh9zLo848uyoqeA==
@@ -307,7 +307,7 @@
     react-dom "^18.2.0"
     zod "^3.22.4"
 
-"@humeai/voice@0.1.8", "@humeai/voice@^0.1.7":
+"@humeai/voice@0.1.8", "@humeai/voice@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@humeai/voice/-/voice-0.1.8.tgz#2c797428e5dc89bac6914768030d2a770ca9d31e"
   integrity sha512-/7+OaGzktHTSG6QkCwSUgWX62s2+ONBuH3qn+gtpKPLbkJVEqEpX8G7azClprrsu+Nub2ZyfQYY5ApkKeT5lrA==
@@ -1157,6 +1157,11 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/lodash@^4.17.5":
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.5.tgz#e6c29b58e66995d57cd170ce3e2a61926d55ee04"
+  integrity sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw==
 
 "@types/node@*", "@types/node@^20":
   version "20.14.7"

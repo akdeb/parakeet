@@ -13,9 +13,14 @@ import { Bird } from "lucide-react";
 interface StartCallProps {
     selectedUser: IUser | null;
     selectedToy: IToy | null;
+    chatGroupId: string | null;
 }
 
-const StartCall: React.FC<StartCallProps> = ({ selectedUser, selectedToy }) => {
+const StartCall: React.FC<StartCallProps> = ({
+    selectedUser,
+    selectedToy,
+    chatGroupId,
+}) => {
     const {
         status,
         connect,
@@ -34,14 +39,17 @@ const StartCall: React.FC<StartCallProps> = ({ selectedUser, selectedToy }) => {
 
     const insertConversation = useCallback(
         async (message: AssistantTranscriptMessage | UserTranscriptMessage) => {
-            await dbInsertConversation(supabase, {
-                toy_id: selectedToy?.toy_id ?? "",
-                user_id: selectedUser?.user_id ?? "",
-                ...message.message,
-                metadata: message.models.prosody,
-            });
+            if (chatGroupId) {
+                await dbInsertConversation(supabase, {
+                    toy_id: selectedToy?.toy_id ?? "",
+                    user_id: selectedUser?.user_id ?? "",
+                    ...message.message,
+                    metadata: message.models.prosody,
+                    chat_group_id: chatGroupId,
+                });
+            }
         },
-        [selectedUser, selectedToy, supabase]
+        [selectedUser, selectedToy, supabase, chatGroupId]
     );
 
     React.useEffect(() => {

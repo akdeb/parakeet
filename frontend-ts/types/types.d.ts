@@ -10,6 +10,7 @@ declare global {
         toy_id: string;
         toy?: IToy;
         modules: Module[];
+        most_recent_chat_group_id: string;
     }
 
     interface IConversation {
@@ -19,6 +20,7 @@ declare global {
         role: string;
         content: string;
         metadata: any;
+        chat_group_id: string;
     }
 
     interface IToy {

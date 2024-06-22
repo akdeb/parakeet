@@ -7,9 +7,10 @@ export const createUser = async (supabase: SupabaseClient, user: User) => {
             email: user.email,
             parent_name: "",
             child_name: "",
-            child_age: 3,
+            child_age: 5,
             child_persona: "",
             toy_id: "2eab6067-5583-47f9-8850-005ceb08935b", // selecting coco
+            most_recent_chat_group_id: "",
         } as Omit<IUser, "modules">,
     ]);
 
