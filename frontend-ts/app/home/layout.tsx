@@ -1,5 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { SidebarNav } from "../components/SidebarNavItems";
+import supabaseServerClient from "@/db/supabaseServerClient";
+import { redirect } from "next/navigation";
 
 const sidebarNavItems = [
     {
@@ -21,6 +23,15 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const supabase = supabaseServerClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+        redirect("/login");
+    }
     return (
         <div className="md:max-w-screen-xl mx-auto">
             <div className="block space-y-6 p-6 md:p-12 pb-16">

@@ -10,7 +10,7 @@ declare global {
         toy_id: string;
         toy?: IToy;
         modules: Module[];
-        most_recent_chat_group_id: string;
+        most_recent_chat_group_id: string | null;
     }
 
     interface IConversation {

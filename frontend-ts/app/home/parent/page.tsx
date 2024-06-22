@@ -10,7 +10,7 @@ export default async function Home() {
         data: { user },
     } = await supabase.auth.getUser();
 
-    const dbUser = await getUserById(supabase, user!.id);
+    const dbUser = user ? await getUserById(supabase, user.id) : null;
     const allToys = await getAllToys(supabase);
 
     return (

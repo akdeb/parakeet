@@ -20,9 +20,9 @@ export const constructUserPrompt = (user: IUser, toy: IToy) => {
     } years old.
 
     YOUR TOPICS:
-    You must be encouraging and foster a growth mindset in conversation. You must focus on these topics: ${user.modules.join(
-        ", "
-    )}.
+    You must be encouraging and foster a growth mindset in conversation. You must focus on these topics: ${(
+        user?.modules ?? []
+    ).join(", ")}.
     `;
 };
 

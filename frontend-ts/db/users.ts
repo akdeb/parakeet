@@ -6,6 +6,7 @@ export const createUser = async (
     user: User,
     userProps: Partial<IUser>
 ) => {
+    console.log("creating user", user, userProps);
     const { error } = await supabase.from("users").insert([
         {
             user_id: user.id,
@@ -15,8 +16,9 @@ export const createUser = async (
             child_age: 5,
             child_persona: "",
             toy_id: userProps.toy_id, // selecting whisker
-            most_recent_chat_group_id: "",
-        } as Omit<IUser, "modules">,
+            most_recent_chat_group_id: null,
+            modules: ["math", "science"],
+        } as IUser,
     ]);
 
     if (error) {

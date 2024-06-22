@@ -13,13 +13,24 @@ const ChildPlayground: React.FC<{
             {/* <p>Child playground</p> */}
             {user && selectedToy && (
                 <div className="items-center flex flex-col w-full">
-                    <p className="text-lg">
-                        <span className="font-bold">{selectedToy?.name}</span>{" "}
-                        talking to{" "}
-                        <span className="font-bold">
-                            {selectedUser?.child_name}
-                        </span>
-                    </p>
+                    {selectedUser?.child_name ? (
+                        <p className="text-lg">
+                            <span className="font-bold">
+                                {selectedToy?.name}
+                            </span>{" "}
+                            talking to{" "}
+                            <span className="font-bold">
+                                {selectedUser?.child_name}
+                            </span>
+                        </p>
+                    ) : (
+                        <p className="text-lg">
+                            Talking to{" "}
+                            <span className="font-bold">
+                                {selectedToy?.name}
+                            </span>
+                        </p>
+                    )}
                     <div
                         className={`flex flex-col max-w-[300px] max-h-[300px] gap-2 mb-4 rounded-2xl overflow-hidden transition-colors duration-200 ease-in-out`}
                     >

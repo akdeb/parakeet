@@ -27,8 +27,6 @@ const Playground: React.FC<PlaygroundProps> = ({
         selectedUser.most_recent_chat_group_id
     );
 
-    console.log(chatGroupId);
-
     React.useEffect(() => {
         const userUpdate = async () => {
             if (chatGroupId) {
@@ -84,7 +82,7 @@ const Playground: React.FC<PlaygroundProps> = ({
                     ),
                 }}
                 resumedChatGroupId={
-                    selectedUser.most_recent_chat_group_id ?? ""
+                    selectedUser.most_recent_chat_group_id ?? undefined
                 }
             >
                 <div className="flex flex-row items-center gap-4">
