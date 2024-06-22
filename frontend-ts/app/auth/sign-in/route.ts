@@ -8,6 +8,7 @@ export async function POST(request: Request) {
     const requestUrl = new URL(request.url);
     const formData = await request.formData();
     const email = String(formData.get("email"));
+    const toy_id = String(formData.get("toy_id"));
     const supabase = createRouteHandlerClient({ cookies });
 
     // const { data, error } = await supabase.auth.signInWithOtp({
@@ -19,10 +20,15 @@ export async function POST(request: Request) {
     //   },
     // })
 
+    console.log(email, toy_id);
+
     const { data, error } = await supabase.auth.signInWithOtp({
         email,
         options: {
             emailRedirectTo: `${requestUrl.origin}`,
+            data: {
+                toy_id,
+            },
         },
     });
 

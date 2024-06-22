@@ -21,7 +21,9 @@ const ToyPicker: React.FC<ToyPickerProps> = ({
     buttonText,
     showCurrent,
 }) => {
-    const [selectedToy, setSelectedToy] = useState<IToy>(currentToy ?? toys[0]);
+    const [selectedToy, setSelectedToy] = useState<IToy | undefined>(
+        currentToy
+    );
 
     const onClickSelectedToy = (toy: IToy) => {
         setSelectedToy(toy);

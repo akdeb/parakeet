@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
-import { LogIn, Home, LogOut } from "lucide-react";
+import { LogIn, Home, LogOut, Sparkles, Bird } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface NavbarButtonsProps {
@@ -67,6 +67,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
                 </Button>
             )}
         </Link>
+        // <Bird size={28} strokeWidth={2} className="text-amber-600" />
     );
 };
 

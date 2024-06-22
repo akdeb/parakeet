@@ -1,6 +1,11 @@
+import { defaultToyId } from "@/lib/data";
 import { type SupabaseClient, type User } from "@supabase/auth-helpers-nextjs";
 
-export const createUser = async (supabase: SupabaseClient, user: User) => {
+export const createUser = async (
+    supabase: SupabaseClient,
+    user: User,
+    userProps: Partial<IUser>
+) => {
     const { error } = await supabase.from("users").insert([
         {
             user_id: user.id,
@@ -9,7 +14,7 @@ export const createUser = async (supabase: SupabaseClient, user: User) => {
             child_name: "",
             child_age: 5,
             child_persona: "",
-            toy_id: "2eab6067-5583-47f9-8850-005ceb08935b", // selecting coco
+            toy_id: userProps.toy_id ?? defaultToyId, // selecting whisker
             most_recent_chat_group_id: "",
         } as Omit<IUser, "modules">,
     ]);

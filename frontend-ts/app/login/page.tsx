@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Messages from "./messages";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 import {
     Card,
     CardContent,
@@ -10,10 +11,24 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Sparkles } from "lucide-react";
+import ToyPreview from "../components/ToyPreview";
+import supabaseServerClient from "@/db/supabaseServerClient";
+import { getToyById } from "@/db/toys";
+import { defaultToyId } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
-export default async function Login() {
+export default async function Login({
+    params,
+    searchParams,
+}: {
+    params: { slug: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+    const supabase = supabaseServerClient();
+    const toy_id = searchParams?.toy_id;
+    const toy = await getToyById(supabase, (toy_id ?? defaultToyId) as string);
+
     return (
         <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
             <Card>
@@ -29,6 +44,23 @@ export default async function Login() {
                 <CardContent className="grid gap-4">
                     {/* <GoogleOAuth />
                     <Separator /> */}
+                    {/* <ToyPreview /> */}
+                    {toy ? (
+                        <div className="flex flex-col items-center gap-2 mx-auto font-quicksand">
+                            <Image
+                                src={"/" + toy.image_src + ".png"}
+                                width={100}
+                                height={100}
+                                alt={toy.name}
+                            />
+                            <p className="font-medium">
+                                You picked{" "}
+                                <span className="font-semibold">
+                                    {toy.name}
+                                </span>
+                            </p>
+                        </div>
+                    ) : null}
                     <form
                         className="flex-1 flex flex-col w-full justify-center gap-4"
                         action="/auth/sign-in"
@@ -42,6 +74,11 @@ export default async function Login() {
                             name="email"
                             placeholder="you@example.com"
                             required
+                        />
+                        <input
+                            type="hidden"
+                            name="toy_id"
+                            value={toy_id ?? ("" as string)}
                         />
                         <Button variant="secondary">Continue with email</Button>
                         <Messages />

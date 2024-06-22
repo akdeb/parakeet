@@ -9,13 +9,13 @@ const IMAGE_SIZE = 200;
 
 interface ProductsProps {
     allToys: IToy[];
-    toy: IToy;
+    toy?: IToy;
     user?: IUser;
 }
 
 const Products: React.FC<ProductsProps> = ({ allToys, toy, user }) => {
     const supabase = createClientComponentClient();
-    // const router = useRouter();
+    const router = useRouter();
 
     const pickToy = async (toy: IToy) => {
         if (user) {
@@ -25,10 +25,7 @@ const Products: React.FC<ProductsProps> = ({ allToys, toy, user }) => {
                 user.user_id
             );
         } else {
-            // Router.push({
-            //     p
-            //     toy_id: toy.toy_id
-            // });
+            router.push(`/login?toy_id=${toy.toy_id}`);
         }
     };
 

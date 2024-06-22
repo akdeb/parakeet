@@ -3,6 +3,7 @@ import Playground from "../components/Playground";
 import supabaseServerClient from "@/db/supabaseServerClient";
 import { getUserById } from "@/db/users";
 import { getToyById } from "@/db/toys";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
     const supabase = supabaseServerClient();
@@ -10,6 +11,10 @@ export default async function Home() {
     const {
         data: { user },
     } = await supabase.auth.getUser();
+
+    if (!user) {
+        redirect("/login");
+    }
 
     const dbUser = await getUserById(supabase, user!.id);
     const accessToken = await getHumeAccessToken();
