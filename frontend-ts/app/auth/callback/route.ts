@@ -21,13 +21,13 @@ export async function GET(request: NextRequest) {
             data: { user },
         } = await supabase.auth.getUser();
 
-        const toy_id = user?.app_metadata?.toy_id ?? undefined;
-
         if (user) {
             const userExists = await doesUserExist(supabase, user);
             if (!userExists) {
                 // Create user if they don't exist
-                await createUser(supabase, user, { toy_id });
+                await createUser(supabase, user, {
+                    toy_id: user?.app_metadata?.toy_id,
+                });
 
                 console.log("new user", user.email);
 

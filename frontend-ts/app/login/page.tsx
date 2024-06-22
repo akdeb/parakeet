@@ -45,7 +45,7 @@ export default async function Login({
                     {/* <GoogleOAuth />
                     <Separator /> */}
                     {/* <ToyPreview /> */}
-                    {toy ? (
+                    {toy && toy_id ? (
                         <div className="flex flex-col items-center gap-2 mx-auto font-quicksand">
                             <Image
                                 src={"/" + toy.image_src + ".png"}

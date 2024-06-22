@@ -1,3 +1,5 @@
+import { getToyById } from "@/db/toys";
+import { defaultToyId } from "@/lib/data";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -20,14 +22,14 @@ export async function POST(request: Request) {
     //   },
     // })
 
-    console.log(email, toy_id);
+    const toy = await getToyById(supabase, toy_id);
 
     const { data, error } = await supabase.auth.signInWithOtp({
         email,
         options: {
             emailRedirectTo: `${requestUrl.origin}`,
             data: {
-                toy_id,
+                toy_id: toy ? toy.toy_id : defaultToyId,
             },
         },
     });

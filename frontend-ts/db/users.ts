@@ -14,7 +14,7 @@ export const createUser = async (
             child_name: "",
             child_age: 5,
             child_persona: "",
-            toy_id: userProps.toy_id ?? defaultToyId, // selecting whisker
+            toy_id: userProps.toy_id, // selecting whisker
             most_recent_chat_group_id: "",
         } as Omit<IUser, "modules">,
     ]);
