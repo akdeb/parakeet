@@ -73,10 +73,10 @@ export default function ClientComponent({
                             />
                         )}
                         <Controls />
-                        <StartCall
+                        {/* <StartCall
                             selectedUser={selectedUser}
                             selectedToy={selectedToy}
-                        />
+                        /> */}
                     </VoiceProvider>
                 </ChildPlayground>
             </div>
