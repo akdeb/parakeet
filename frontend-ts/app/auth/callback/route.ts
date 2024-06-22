@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
             if (!userExists) {
                 // Create user if they don't exist
                 await createUser(supabase, user, {
-                    toy_id: user?.app_metadata?.toy_id,
+                    toy_id: user?.user_metadata?.toy_id,
                 });
 
                 console.log("new user", user.email);
@@ -41,5 +41,5 @@ export async function GET(request: NextRequest) {
     }
 
     // URL to redirect to after sign in process completes
-    return NextResponse.redirect(`${requestUrl.origin}`);
+    return NextResponse.redirect(`${requestUrl.origin}/home`);
 }
