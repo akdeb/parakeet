@@ -89,7 +89,7 @@ function ProfileForm({
 
             <Button type="submit" variant="primary">
                 <Sparkles className="mr-2" size={16} fill="white" />
-                Preorder my Parakeet toy
+                Request Parakeet Toy Demo
             </Button>
         </form>
     );
@@ -104,10 +104,10 @@ const PlaceOrder: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <p>
             {"You can now preorder a Parakeet toy for your child. Get "}
             <span className="font-bold">25% off</span>
-            {" when you order now."}
+            {" when you order now. See a demo first →"}
         </p>
     );
-    const titleText = "Preorder now";
+    const titleText = "See Demo before Preorder";
 
     if (isDesktop) {
         return (

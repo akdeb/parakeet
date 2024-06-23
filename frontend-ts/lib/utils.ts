@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+export const getBaseUrl = () => {
+    return process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
+        ? "https://parakeetai.vercel.app"
+        : "http://localhost:3000";
+};
+
 export const getCreditsRemaining = (user: IUser) => {
     // starts with 50 credits
     // max session time is 10 minutes or 600 seconds

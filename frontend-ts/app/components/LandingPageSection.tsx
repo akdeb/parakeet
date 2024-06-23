@@ -21,7 +21,9 @@ const LandingPageSection: React.FC<LandingPageSectionProps> = ({
         >
             <Image src={imageSrc} alt="toy" width={200} height={200} />
             <div className="flex flex-col gap-2">
-                <h2 className="text-3xl font-semibold">{title}</h2>
+                <h2 className="text-2xl text-gray-700 font-semibold">
+                    {title}
+                </h2>
                 <p className="text-lg text-gray-500">{description}</p>
             </div>
         </div>

@@ -15,6 +15,8 @@ import ToyPreview from "../components/ToyPreview";
 import supabaseServerClient from "@/db/supabaseServerClient";
 import { getToyById } from "@/db/toys";
 import { defaultToyId } from "@/lib/data";
+import { Separator } from "@/components/ui/separator";
+import GoogleOAuth from "@/app/components/GoogleOAuth";
 
 export const dynamic = "force-dynamic";
 
@@ -42,8 +44,6 @@ export default async function Login({
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4">
-                    {/* <GoogleOAuth />
-                    <Separator /> */}
                     {/* <ToyPreview /> */}
                     {toy && toy_id ? (
                         <div className="flex flex-col items-center gap-2 mx-auto font-quicksand">
@@ -61,6 +61,8 @@ export default async function Login({
                             </p>
                         </div>
                     ) : null}
+                    <GoogleOAuth />
+                    <Separator />
                     <form
                         className="flex-1 flex flex-col w-full justify-center gap-4"
                         action="/auth/sign-in"

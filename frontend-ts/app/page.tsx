@@ -10,43 +10,23 @@ import LandingPageSection from "./components/LandingPageSection";
 
 const Sections = [
     {
-        title: "A companion for your child",
+        title: "A companion for your child that fosters a growth mindset",
         description:
-            "Our toys are designed to be thoughtful and engaging companions for your child.",
+            "Our toys are designed to be thoughtful and engaging companions for your child that foster a growth mindset by design.",
         imageSrc: "/coco2.png",
     },
     {
-        title: "Fostering a growth mindset",
+        title: "Supplementing learning while reducing screen time",
         description:
-            "Our toys are designed to foster a growth mindset in your child.",
+            "Our toys are designed to supplement learning for your child while reducing screen time and providing a more engaging experience.",
         imageSrc: "/whisker2.png",
         isImageRight: true,
     },
     {
-        title: "Supplementing learning",
+        title: "AI-driven insights for parents. Privacy first.",
         description:
-            "Our toys are designed to supplement learning for your child.",
-        imageSrc: "/tumble2.png",
-    },
-    {
-        title: "Reduce screen time",
-        description:
-            "We aim to reduce screen time for your child and provide a more engaging experience.",
-        imageSrc: "/coco2.png",
-        isImageRight: true,
-    },
-    {
-        title: "AI-driven insights for parents",
-        description:
-            "Our toys provide insights to parents on their child's learning and emotional growth.",
+            "Our toys provide insights to parents on their child's learning and emotional growth. We take privacy seriously and all personal data is encrypted.",
         imageSrc: "/whisker2.png",
-    },
-    {
-        title: "Privacy first",
-        description:
-            "We take privacy seriously and all personal data is encrypted.",
-        imageSrc: "/tumble2.png",
-        isImageRight: true,
     },
 ];
 
