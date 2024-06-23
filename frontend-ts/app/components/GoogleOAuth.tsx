@@ -18,7 +18,7 @@ const GoogleOAuth = () => {
                 //     prompt: "consent",
                 // },
                 // redirectTo: new URL(getBaseUrl() + "/auth/callback").href,
-                redirectTo: `https://parakeetai.vercel.app/auth/callback`,
+                redirectTo: `${location.origin}/auth/callback`,
             },
         });
     };
