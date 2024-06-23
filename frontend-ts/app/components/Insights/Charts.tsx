@@ -286,7 +286,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
             <div className="flex flex-col md:flex-row md:space-x-8 mx-6-">
                 <div className="w-full order-2 md:order-1  md:flex-grow">
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
-                    Sentiments Over Time and Forecast
+                    Sentiment Over Time and Forecast
                     </h2>
                     <div className="h-[300px] lg:h-96">
                         <MyResponsiveLine data={lineData} />

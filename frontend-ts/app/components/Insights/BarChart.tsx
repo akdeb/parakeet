@@ -42,7 +42,7 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data, filter }) => {
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
             // // colors={{ scheme: "nivo" }}
-            colors={["#fbbf24", "#4ade80"]}
+            colors={["#fbbf24", "#c084fc"]}
             borderRadius={5}
             borderColor={{
                 from: "color",
@@ -127,7 +127,7 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data, filter }) => {
                     text: {
                         fontSize: 12,
                         fontWeight: 600,
-                        // fill: "#4b5563",
+                        fill: "#4b5563",
                     },
                 },
             }}
