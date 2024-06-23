@@ -241,7 +241,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
                                 title={cardData.get("main_1")?.title ?? null}
                                 value={`${cardData.get("main_1")?.value ?? ""}%`}
                                 delta={cardData.get("main_1")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="top"
                             />
                         </div>
@@ -250,7 +250,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
                                 title={cardData.get("main_2")?.title ?? null}
                                 value={`${cardData.get("main_2")?.value ?? ""}%`}
                                 delta={cardData.get("main_2")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="top"
                             />
                         </div>
@@ -267,7 +267,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
                                 title={cardData.get("change_1")?.title ?? null}
                                 value={`${cardData.get("change_1")?.value ?? ""}%`}
                                 delta={cardData.get("change_1")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="shift"
                             />
                         </div>
@@ -276,7 +276,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
                                 title={cardData.get("change_2")?.title ?? null}
                                 value={`${cardData.get("change_2")?.value ?? ""}%`}
                                 delta={cardData.get("change_2")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="shift"
                             />
                         </div>

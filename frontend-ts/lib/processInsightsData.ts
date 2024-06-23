@@ -11,6 +11,8 @@ export const processData = (rawData: any[], filter: string) => {
     
     const {prevAvgSorted, curAvgSorted} = getSortedAvgData(previousPeriodData, currentPeriodData, 2);
 
+    console.log(curAvgSorted)
+
     const cardData = getCardsData(prevAvgSorted, curAvgSorted);
     const barData = getBarData(prevAvgSorted, curAvgSorted, 10,filter);
 
@@ -92,7 +94,7 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
 
     cardData.set("main_2", {
         title: secondCurAvg[0],
-        value: roundDecimal(firstCurAvg[1] as number),
+        value: roundDecimal(secondCurAvg[1] as number),
         change: roundDecimal(changesSorted[secondCurAvg[0]]),
     });
 
