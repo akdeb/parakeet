@@ -188,9 +188,10 @@ const lineData = [
 interface ChartsProps {
     selectedUser: IUser | null;
     selectedToy: IToy | null;
+    filter: string;
 }
 
-const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
+const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter }) => {
     // get the user data from the selected user and period
 
     const supabase = supabaseServerClient();
@@ -199,8 +200,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
         "8c3af087-8d80-4536-8c76-062677448033",
     );
     // console.log("+++++", data_.length, data_);
-    const { cardData,barData } = processData(data_, "days");
-
+    const { cardData,barData } = processData(data_, filter);
 
 
     return (
@@ -306,8 +306,8 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
                     Top 10 Emotions Breakdown (sheet)
                 </h2>
-                <div className="h-[300px] lg:h-[450px]">
-                    <MyResponsiveBar data={barData} />
+                <div className="h-[350px] lg:h-[450px]">
+                    <MyResponsiveBar data={barData} filter={filter} />
                 </div>
             </div>
         </div>

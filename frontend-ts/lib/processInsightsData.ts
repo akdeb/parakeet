@@ -12,8 +12,7 @@ export const processData = (rawData: any[], filter: string) => {
     const {prevAvgSorted, curAvgSorted} = getSortedAvgData(previousPeriodData, currentPeriodData, 2);
 
     const cardData = getCardsData(prevAvgSorted, curAvgSorted);
-    const barData = getBarData(prevAvgSorted, curAvgSorted, 10);
-    console.log(barData)
+    const barData = getBarData(prevAvgSorted, curAvgSorted, 10,filter);
 
     return {
         cardData,barData
@@ -113,24 +112,40 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
 };
 
 
-const getBarData = (prevAvg: { [key: string]: number }, curAvg: { [key: string]: number }, topN: number) => {
+const getBarData = (
+    prevAvg: { [key: string]: number },
+    curAvg: { [key: string]: number },
+    topN: number,
+    filter: string
+  ) => {
     // Get first N of curAvg data
     const curAvgEntries = Object.entries(curAvg);
     const curAvgTopN = curAvgEntries.slice(0, topN);
-
+  
+    // Determine the labels based on the filter
+    let currentPeriodLabel = "Current Period";
+    let previousPeriodLabel = "Previous Period";
+  
+    if (filter === "days") {
+      currentPeriodLabel = "Today";
+      previousPeriodLabel = "Yesterday";
+    } else if (filter === "weeks") {
+      currentPeriodLabel = "This month";
+      previousPeriodLabel = "Last month";
+    }
+  
     // Map through curAvgTopN to create the desired schema
     const barData = curAvgTopN.map(([emotion, currentPeriodValue]) => {
-        const prevPeriodValue = prevAvg[emotion] !== undefined ? prevAvg[emotion] : 0;
-        return {
-            emotion,
-            "Current Period": roundDecimal(currentPeriodValue), // Ensure this is a number
-            "Previous Period": roundDecimal(prevPeriodValue) // Ensure this is a number
-        };
+      const prevPeriodValue = prevAvg[emotion] !== undefined ? prevAvg[emotion] : 0;
+      return {
+        emotion,
+        [currentPeriodLabel]: roundDecimal(currentPeriodValue), // Ensure this is a number
+        [previousPeriodLabel]: roundDecimal(prevPeriodValue) // Ensure this is a number
+      };
     });
-
+  
     return barData;
-};
-
+  };
 
 const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     const prevAvg = averages(prevData);

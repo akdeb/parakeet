@@ -17,7 +17,7 @@ export default async function Home() {
             </div>
 
             <div className="">
-                <Charts selectedUser={null} selectedToy={null} />
+                <Charts selectedUser={null} selectedToy={null} filter="days" />
             </div>
         </div>
     );
