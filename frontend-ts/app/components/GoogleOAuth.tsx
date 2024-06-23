@@ -13,11 +13,12 @@ const GoogleOAuth = () => {
         await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-                queryParams: {
-                    access_type: "offline",
-                    prompt: "consent",
-                },
-                redirectTo: new URL(getBaseUrl() + "/auth/callback").href,
+                // queryParams: {
+                //     access_type: "offline",
+                //     prompt: "consent",
+                // },
+                // redirectTo: new URL(getBaseUrl() + "/auth/callback").href,
+                redirectTo: `${location.origin}/auth/callback`,
             },
         });
     };
