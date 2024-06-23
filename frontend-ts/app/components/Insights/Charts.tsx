@@ -7,33 +7,6 @@ import { MyResponsiveHeatMap } from "./Heatmap";
 import { MyResponsiveLine } from "./LineChart";
 import { processData } from "@/lib/processInsightsData";
 
-export const barData: BarChartData[] = [
-    {
-        country: "Joy",
-        "Current Period": 200,
-        "Previou Period": 93,
-    },
-    {
-        country: "Excitement",
-        "Current Period": 188,
-        "Previou Period": 40,
-    },
-    {
-        country: "Interest",
-        "Current Period": 168,
-        "Previou Period": 28,
-    },
-    {
-        country: "Determination",
-        "Current Period": 165,
-        "Previou Period": 107,
-    },
-    {
-        country: "Confusion",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-];
 
 export const pieData: PieChartData[] = [
     {
@@ -215,9 +188,10 @@ const lineData = [
 interface ChartsProps {
     selectedUser: IUser | null;
     selectedToy: IToy | null;
+    filter: string;
 }
 
-const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
+const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter }) => {
     // get the user data from the selected user and period
 
     const supabase = supabaseServerClient();
@@ -226,7 +200,8 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
         "8c3af087-8d80-4536-8c76-062677448033",
     );
     // console.log("+++++", data_.length, data_);
-    const { cardData } = processData(data_, "days");
+    const { cardData,barData } = processData(data_, filter);
+
 
     return (
         <div>
@@ -266,7 +241,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title={cardData.get("main_1")?.title ?? null}
                                 value={`${cardData.get("main_1")?.value ?? ""}%`}
                                 delta={cardData.get("main_1")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="top"
                             />
                         </div>
@@ -275,7 +250,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title={cardData.get("main_2")?.title ?? null}
                                 value={`${cardData.get("main_2")?.value ?? ""}%`}
                                 delta={cardData.get("main_2")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="top"
                             />
                         </div>
@@ -292,7 +267,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title={cardData.get("change_1")?.title ?? null}
                                 value={`${cardData.get("change_1")?.value ?? ""}%`}
                                 delta={cardData.get("change_1")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="shift"
                             />
                         </div>
@@ -301,7 +276,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 title={cardData.get("change_2")?.title ?? null}
                                 value={`${cardData.get("change_2")?.value ?? ""}%`}
                                 delta={cardData.get("change_2")?.change ?? 0}
-                                day={1}
+                                filter={filter}
                                 type="shift"
                             />
                         </div>
@@ -311,7 +286,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             <div className="flex flex-col md:flex-row md:space-x-8 mx-6-">
                 <div className="w-full order-2 md:order-1  md:flex-grow">
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
-                        Emotions Over Time and Forecast
+                    Sentiment Over Time and Forecast
                     </h2>
                     <div className="h-[300px] lg:h-96">
                         <MyResponsiveLine data={lineData} />
@@ -320,7 +295,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
 
                 <div className="w-full order-1 md:order-2 md:w-72 md:flex-shrink-0">
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
-                        Current Emotions Proportions
+                        Current Sentiment Proportions
                     </h2>
                     <div className="h-[300px] lg:h-96">
                         <MyResponsivePie data={pieData} />
@@ -329,10 +304,10 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             </div>
             <div className="w-full">
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
-                    Emotions Breakdown (left-right scrolling + sheet)
+                    Top 10 Emotions Breakdown (sheet)
                 </h2>
-                <div className="h-[300px] lg:h-[400px]">
-                    <MyResponsiveBar data={barData} />
+                <div className="h-[350px] lg:h-[450px]">
+                    <MyResponsiveBar data={barData} filter={filter} />
                 </div>
             </div>
         </div>

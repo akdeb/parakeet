@@ -37,7 +37,7 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Score",
+            legend: "Score (%)",
             legendOffset: -40,
             legendPosition: "middle",
             truncateTickAt: 0,

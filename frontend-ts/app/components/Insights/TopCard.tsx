@@ -14,11 +14,11 @@ interface CardProps {
     title: string | null;
     value: number | string | null;
     delta: number | null;
-    day: number;
+    filter: string;
     type: string | null;
 }
 
-const TopCard: React.FC<CardProps> = ({ title, value, delta, day, type }) => {
+const TopCard: React.FC<CardProps> = ({ title, value, delta, filter, type }) => {
     const isPositiveDelta = delta !== null && delta >= 0;
     // get the user data from the selected user and period
 
@@ -26,10 +26,10 @@ const TopCard: React.FC<CardProps> = ({ title, value, delta, day, type }) => {
     const titleColor = type === "top" ? "text-amber-50" : "text-violet-50";
     const footerColor = type === "top" ? "text-amber-100" : "text-violet-100";
 
-    const getTimePeriod = (day: number): string => {
-        if (day === 7) return "last week";
-        if (day === 1) return "yesterday";
-        if (day >= 28 && day <= 31) return "last month";
+    const getTimePeriod = (filter: string): string => {
+        if (filter === "weeks") return "last week";
+        if (filter === "days") return "yesterday";
+        if (filter === "months") return "last month";
         return ""; // Default case, can be adjusted based on your needs
     };
 
@@ -62,7 +62,7 @@ const TopCard: React.FC<CardProps> = ({ title, value, delta, day, type }) => {
                             <TrendingDown className="h-[20px] text-rose-500 mr-1" />
                         ))}
                     <p>
-                        {delta}% from {getTimePeriod(day)}
+                        {delta}% from {getTimePeriod(filter)}
                     </p>
                 </CardFooter>
             </Card>
