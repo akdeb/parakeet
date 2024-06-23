@@ -48,7 +48,7 @@ declare global {
     type PieChartData = {
         id: string;
         label: string;
-        value: number;
+        value: number | null;
     };
 
     interface DataPoint {

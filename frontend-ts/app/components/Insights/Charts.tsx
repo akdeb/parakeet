@@ -7,182 +7,182 @@ import { MyResponsiveHeatMap } from "./Heatmap";
 import { MyResponsiveLine } from "./LineChart";
 import { processData } from "@/lib/processInsightsData";
 
-export const pieData: PieChartData[] = [
-    {
-        id: "Positive",
-        label: "Positive",
-        value: 60.0,
-    },
-    {
-        id: "Neutral",
-        label: "Neutral",
-        value: 15.5,
-    },
-    {
-        id: "Negative",
-        label: "Negative",
-        value: 24.5,
-    },
-];
+// export const pieData: PieChartData[] = [
+//     {
+//         id: "Positive",
+//         label: "Positive",
+//         value: 60.0,
+//     },
+//     {
+//         id: "Neutral",
+//         label: "Neutral",
+//         value: 15.5,
+//     },
+//     {
+//         id: "Negative",
+//         label: "Negative",
+//         value: 24.5,
+//     },
+// ];
 
-const lineData = [
-    {
-        id: "Negative",
-        name: "Negative",
-        data: [
-            {
-                x: 0,
-                y: 8,
-            },
-            {
-                x: 1,
-                y: 10,
-            },
-            {
-                x: 2,
-                y: 11,
-            },
-            {
-                x: 3,
-                y: 9,
-            },
-            {
-                x: 4,
-                y: 6,
-            },
-            {
-                x: 5,
-                y: 10,
-            },
-            {
-                x: 6,
-                y: 12,
-            },
-        ],
-    },
-    {
-        id: "Neg-P",
-        name: "Negative-Prediction",
-        data: [
-            {
-                x: 6,
-                y: 12,
-            },
-            {
-                x: 7,
-                y: 13,
-            },
-            {
-                x: 8,
-                y: 9,
-            },
-        ],
-    },
-    {
-        id: "Neutral",
-        name: "Neutral",
-        data: [
-            {
-                x: 0,
-                y: 9,
-            },
-            {
-                x: 1,
-                y: 10,
-            },
-            {
-                x: 2,
-                y: 12,
-            },
-            {
-                x: 3,
-                y: 10,
-            },
-            {
-                x: 4,
-                y: 12,
-            },
-            {
-                x: 5,
-                y: 15,
-            },
-            {
-                x: 6,
-                y: 13,
-            },
-        ],
-    },
-    {
-        id: "Neu-P",
-        name: "Neutral-Prediction",
-        data: [
-            {
-                x: 6,
-                y: 13,
-            },
-            {
-                x: 7,
-                y: 9,
-            },
-            {
-                x: 8,
-                y: 12,
-            },
-        ],
-    },
-    {
-        id: "Postive",
-        name: "Postive",
-        data: [
-            {
-                x: 0,
-                y: 10,
-            },
-            {
-                x: 1,
-                y: 12,
-            },
-            {
-                x: 2,
-                y: 13,
-            },
-            {
-                x: 3,
-                y: 12,
-            },
-            {
-                x: 4,
-                y: 16,
-            },
-            {
-                x: 5,
-                y: 14,
-            },
-            {
-                x: 6,
-                y: 17,
-            },
-        ],
-    },
-    {
-        id: "Pos-P",
-        name: "Postive-Prediction",
-        data: [
-            {
-                x: 6,
-                y: 17,
-            },
-            {
-                x: 7,
-                y: 16,
-            },
-            {
-                x: 8,
-                y: 17,
-            },
-        ],
-    },
-];
+// const lineData = [
+//     {
+//         id: "Negative",
+//         name: "Negative",
+//         data: [
+//             {
+//                 x: 0,
+//                 y: 8,
+//             },
+//             {
+//                 x: 1,
+//                 y: 10,
+//             },
+//             {
+//                 x: 2,
+//                 y: 11,
+//             },
+//             {
+//                 x: 3,
+//                 y: 9,
+//             },
+//             {
+//                 x: 4,
+//                 y: 6,
+//             },
+//             {
+//                 x: 5,
+//                 y: 10,
+//             },
+//             {
+//                 x: 6,
+//                 y: 12,
+//             },
+//         ],
+//     },
+//     {
+//         id: "Neg-P",
+//         name: "Negative-Prediction",
+//         data: [
+//             {
+//                 x: 6,
+//                 y: 12,
+//             },
+//             {
+//                 x: 7,
+//                 y: 13,
+//             },
+//             {
+//                 x: 8,
+//                 y: 9,
+//             },
+//         ],
+//     },
+//     {
+//         id: "Neutral",
+//         name: "Neutral",
+//         data: [
+//             {
+//                 x: 0,
+//                 y: 9,
+//             },
+//             {
+//                 x: 1,
+//                 y: 10,
+//             },
+//             {
+//                 x: 2,
+//                 y: 12,
+//             },
+//             {
+//                 x: 3,
+//                 y: 10,
+//             },
+//             {
+//                 x: 4,
+//                 y: 12,
+//             },
+//             {
+//                 x: 5,
+//                 y: 15,
+//             },
+//             {
+//                 x: 6,
+//                 y: 13,
+//             },
+//         ],
+//     },
+//     {
+//         id: "Neu-P",
+//         name: "Neutral-Prediction",
+//         data: [
+//             {
+//                 x: 6,
+//                 y: 13,
+//             },
+//             {
+//                 x: 7,
+//                 y: 9,
+//             },
+//             {
+//                 x: 8,
+//                 y: 12,
+//             },
+//         ],
+//     },
+//     {
+//         id: "Postive",
+//         name: "Postive",
+//         data: [
+//             {
+//                 x: 0,
+//                 y: 10,
+//             },
+//             {
+//                 x: 1,
+//                 y: 12,
+//             },
+//             {
+//                 x: 2,
+//                 y: 13,
+//             },
+//             {
+//                 x: 3,
+//                 y: 12,
+//             },
+//             {
+//                 x: 4,
+//                 y: 16,
+//             },
+//             {
+//                 x: 5,
+//                 y: 14,
+//             },
+//             {
+//                 x: 6,
+//                 y: 17,
+//             },
+//         ],
+//     },
+//     {
+//         id: "Pos-P",
+//         name: "Postive-Prediction",
+//         data: [
+//             {
+//                 x: 6,
+//                 y: 17,
+//             },
+//             {
+//                 x: 7,
+//                 y: 16,
+//             },
+//             {
+//                 x: 8,
+//                 y: 17,
+//             },
+//         ],
+//     },
+// ];
 
 interface ChartsProps {
     user?: IUser;
@@ -198,7 +198,10 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
         const data = await dbGetConversation(supabase, user.user_id);
         console.log("++++++", user);
         // console.log("+++++", data_.length, data_);
-        const { cardData, barData } = processData(data, filter);
+        const { cardData, barData, lineData, pieData } = processData(
+            data,
+            filter,
+        );
 
         return (
             <div>
@@ -213,7 +216,7 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                     components.
                 </div>
 
-                <div className="flex justify-center w-full mb-2">
+                {/* <div className="flex justify-center w-full mb-2">
                     <button className="w-[72px] mr-[1px] py-1 px-2 bg-amber-400 text-white rounded-l-[15px]">
                         Days
                     </button>
@@ -226,14 +229,14 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                     <button className="w-[72px] py-1 px-2 bg-amber-50 text-amber-500 rounded-r-[15px] hover:bg-amber-100">
                         All
                     </button>
-                </div>
+                </div> */}
 
-                <div className="flex flex-col md:flex-row md:space-x-4">
+                <div className="flex flex-col md:flex-row md:space-x-3">
                     <div className="w-full">
                         <h2 className="my-4 text-lg font-bold text-gray-700">
                             Main Emotions
                         </h2>
-                        <div className="flex space-x-4">
+                        <div className="flex space-x-3">
                             <div className="flex-grow">
                                 <TopCard
                                     title={
@@ -263,7 +266,7 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                         <h2 className="my-4 text-lg font-bold text-gray-700">
                             Significant Emotional Shifts
                         </h2>
-                        <div className="flex space-x-4">
+                        <div className="flex space-x-3">
                             <div className="flex-grow">
                                 <TopCard
                                     title={
@@ -296,7 +299,8 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                 <div className="flex flex-col md:flex-row md:space-x-8 mx-6-">
                     <div className="w-full order-2 md:order-1  md:flex-grow">
                         <h2 className="mt-6 text-lg font-bold text-gray-700">
-                            Sentiment Over Time and Forecast
+                            {/* Sentiment Over Time and Forecast */}
+                            Sentiment Over Time
                         </h2>
                         <div className="h-[300px] lg:h-96">
                             <MyResponsiveLine data={lineData} />

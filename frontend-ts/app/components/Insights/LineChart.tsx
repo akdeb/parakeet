@@ -15,16 +15,19 @@ type MyResponsiveLineProps = {
 
 export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
     <ResponsiveLine
-        curve="natural"
+        curve="monotoneX"
         lineWidth={3}
-        margin={{ top: 20, right: 15, bottom: 68, left: 45 }}
+        margin={{ top: 20, right: 15, bottom: 68, left: 50 }}
         data={data}
-        xScale={{ type: "linear", min: 0, max: "auto" }}
-        yScale={{ type: "linear" }}
+        xFormat="time:%Y-%m-%d"
+        yScale={{
+            type: "linear",
+        }}
         yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
         axisBottom={{
+            // format: "%b %d",
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
@@ -38,25 +41,25 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
             tickPadding: 5,
             tickRotation: 0,
             legend: "Score (%)",
-            legendOffset: -40,
+            legendOffset: -45,
             legendPosition: "middle",
             truncateTickAt: 0,
         }}
+        enableTouchCrosshair={true}
         pointSize={10}
         pointColor={{ from: "color", modifiers: [] }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
         pointLabel="data.yFormatted"
         pointLabelYOffset={-12}
-        enableTouchCrosshair={true}
         useMesh={true}
         colors={[
             "#fb7185",
-            "#FCCCD4",
+            // "#FCCCD4",
             "#a8a29e",
-            "#e7e5e4",
+            // "#e7e5e4",
             "#22c55e",
-            "#CCFBDD",
+            // "#CCFBDD",
         ]}
         legends={[
             {

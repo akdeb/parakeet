@@ -1,5 +1,62 @@
 import { startOfDay, subDays, endOfDay } from "date-fns";
 
+export const positiveEmotions = [
+    "Admiration",
+    "Adoration",
+    "Aesthetic Appreciation",
+    "Amusement",
+    "Awe",
+    "Calmness",
+    "Contentment",
+    "Craving",
+    "Desire",
+    "Determination",
+    "Ecstasy",
+    "Excitement",
+    "Interest",
+    "Joy",
+    "Love",
+    "Nostalgia",
+    "Pride",
+    "Realization",
+    "Relief",
+    "Romance",
+    "Satisfaction",
+    "Surprise (positive)",
+    "Triumph",
+];
+
+export const negativeEmotions = [
+    "Anger",
+    "Anxiety",
+    "Contempt",
+    "Disappointment",
+    "Disgust",
+    "Distress",
+    "Embarrassment",
+    "Empathic Pain",
+    "Envy",
+    "Fear",
+    "Guilt",
+    "Horror",
+    "Pain",
+    "Sadness",
+    "Shame",
+    "Surprise (negative)",
+    "Tiredness",
+];
+
+export const neutralEmotions = [
+    "Awkwardness",
+    "Boredom",
+    "Concentration",
+    "Confusion",
+    "Contemplation",
+    "Doubt",
+    "Entrancement",
+    "Sympathy",
+];
+
 export const processData = (rawData: any[], filter: string) => {
     // Perform your heavy computations here
 
@@ -8,6 +65,7 @@ export const processData = (rawData: any[], filter: string) => {
 
     const previousPeriodData = filterDataByDate(rawData, previousPeriod);
     const currentPeriodData = filterDataByDate(rawData, currentPeriod);
+    // console.log(previousPeriodData);
 
     const { prevAvgSorted, curAvgSorted } = getSortedAvgData(
         previousPeriodData,
@@ -15,14 +73,22 @@ export const processData = (rawData: any[], filter: string) => {
         2,
     );
 
-    console.log(curAvgSorted);
+    // console.log(curAvgSorted);
+    // console.log(prevAvgSorted);
 
     const cardData = getCardsData(prevAvgSorted, curAvgSorted);
     const barData = getBarData(prevAvgSorted, curAvgSorted, 10, filter);
 
+    const { lineData, pieData } = getLinedata(rawData);
+    // print lineData to json
+    console.log(JSON.stringify(lineData));
+    console.log(JSON.stringify(pieData));
+
     return {
         cardData,
         barData,
+        lineData,
+        pieData,
     };
 };
 
@@ -88,7 +154,12 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
     // Get the first and last k,v in changesSorted
     const changesEntries = Object.entries(changesSorted);
     const firstChange = changesEntries[0];
-    const lastChange = changesEntries[changesEntries.length - 1];
+    let lastChange: [string, number];
+    if (changesEntries[changesEntries.length - 1][1] < 0) {
+        lastChange = changesEntries[changesEntries.length - 1];
+    } else {
+        lastChange = changesEntries[1];
+    }
 
     cardData.set("main_1", {
         title: firstCurAvg[0],
@@ -168,7 +239,11 @@ const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     return { prevAvgSorted, curAvgSorted };
 };
 
-const roundDecimal = function (num: number) {
+const roundDecimal = function (num: number | null) {
+    if (num === null) {
+        return num;
+    }
+
     if (num > 100 || num < -100) {
         return Math.round(num);
     } else if (num > 10 || num < -10) {
@@ -176,4 +251,103 @@ const roundDecimal = function (num: number) {
     } else {
         return Math.round(num * 100) / 100;
     }
+};
+
+export const getLinedata = (data: any) => {
+    const dailyScores: {
+        [date: string]: {
+            positive: number[];
+            negative: number[];
+            neutral: number[];
+        };
+    } = {};
+    let pieData: {
+        id: string;
+        label: string;
+        value: number | null;
+    }[] = [];
+
+    // Loop through each item in the data array
+    data.forEach((entry: any) => {
+        const date = new Date(entry.created_at).toISOString().split("T")[0];
+        if (!dailyScores[date]) {
+            dailyScores[date] = { positive: [], negative: [], neutral: [] };
+        }
+
+        // Check if metadata and scores are not null
+        if (entry.metadata && entry.metadata.scores) {
+            Object.keys(entry.metadata.scores).forEach((emotion) => {
+                const score = entry.metadata.scores![emotion];
+                if (positiveEmotions.includes(emotion)) {
+                    dailyScores[date].positive.push(score);
+                } else if (negativeEmotions.includes(emotion)) {
+                    dailyScores[date].negative.push(score);
+                } else if (neutralEmotions.includes(emotion)) {
+                    dailyScores[date].neutral.push(score);
+                }
+            });
+        } else {
+            dailyScores[date].positive.push(0);
+            dailyScores[date].negative.push(0);
+            dailyScores[date].neutral.push(0);
+        }
+    });
+
+    const lineData: {
+        id: string;
+        name: string;
+        data: { x: string; y: number | null }[];
+    }[] = [
+        { id: "Negative", name: "Negative", data: [] },
+        // { id: "Neg-P", name: "Negative-Prediction", data: [] },
+        { id: "Neutral", name: "Neutral", data: [] },
+        // { id: "Neu-P", name: "Neutral-Prediction", data: [] },
+        { id: "Positive", name: "Positive", data: [] },
+        // { id: "Pos-P", name: "Positive-Prediction", data: [] },
+    ];
+
+    Object.keys(dailyScores).forEach((date) => {
+        const positiveScores = dailyScores[date].positive;
+        const negativeScores = dailyScores[date].negative;
+        const neutralScores = dailyScores[date].neutral;
+
+        const average = (arr: number[]) =>
+            arr.reduce((a, b) => a + b, 0) / arr.length || 0;
+
+        const positiveAverage = average(positiveScores);
+        const negativeAverage = average(negativeScores);
+        const neutralAverage = average(neutralScores);
+
+        const totalSum = positiveAverage + negativeAverage + neutralAverage;
+
+        const normalizedPositive = positiveAverage / totalSum || null;
+        const normalizedNegative = negativeAverage / totalSum || null;
+        const normalizedNeutral = neutralAverage / totalSum || null;
+
+        lineData[0].data.push({ x: date, y: normalizedNegative });
+        lineData[1].data.push({ x: date, y: normalizedPositive });
+        lineData[2].data.push({ x: date, y: normalizedNeutral });
+    });
+
+    const idx = lineData[0].data.length - 1;
+
+    pieData = [
+        {
+            id: "Positive",
+            label: "Positive",
+            value: roundDecimal(lineData[2].data[idx].y),
+        },
+        {
+            id: "Neutral",
+            label: "Neutral",
+            value: roundDecimal(lineData[1].data[idx].y),
+        },
+        {
+            id: "Negative",
+            label: "Negative",
+            value: roundDecimal(lineData[0].data[idx].y),
+        },
+    ];
+
+    return { lineData, pieData };
 };
