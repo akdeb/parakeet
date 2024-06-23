@@ -5,8 +5,9 @@ import { MyResponsiveBar } from "./BarChart";
 import { MyResponsivePie } from "./PieChart";
 import { MyResponsiveHeatMap } from "./Heatmap";
 import { MyResponsiveLine } from "./LineChart";
+import { processData } from "@/lib/processInsightsData";
 
-export const data: BarChartData[] = [
+export const barData: BarChartData[] = [
     {
         country: "Joy",
         "Current Period": 200,
@@ -49,337 +50,6 @@ export const pieData: PieChartData[] = [
         id: "Negative",
         label: "Negative",
         value: 24.5,
-    },
-];
-
-export const HeatMapData: HeatMapData[] = [
-    {
-        id: "Japan",
-        data: [
-            {
-                x: "Train",
-                y: -65348,
-            },
-            {
-                x: "Subway",
-                y: 31437,
-            },
-            {
-                x: "Bus",
-                y: 90254,
-            },
-            {
-                x: "Car",
-                y: 41562,
-            },
-            {
-                x: "Boat",
-                y: -9626,
-            },
-            {
-                x: "Moto",
-                y: -99736,
-            },
-            {
-                x: "Moped",
-                y: -65921,
-            },
-            {
-                x: "Bicycle",
-                y: -42891,
-            },
-            {
-                x: "Others",
-                y: 10186,
-            },
-        ],
-    },
-    {
-        id: "France",
-        data: [
-            {
-                x: "Train",
-                y: 85301,
-            },
-            {
-                x: "Subway",
-                y: -60444,
-            },
-            {
-                x: "Bus",
-                y: 10959,
-            },
-            {
-                x: "Car",
-                y: 94452,
-            },
-            {
-                x: "Boat",
-                y: 21484,
-            },
-            {
-                x: "Moto",
-                y: -61793,
-            },
-            {
-                x: "Moped",
-                y: -86777,
-            },
-            {
-                x: "Bicycle",
-                y: 69156,
-            },
-            {
-                x: "Others",
-                y: 23816,
-            },
-        ],
-    },
-    {
-        id: "US",
-        data: [
-            {
-                x: "Train",
-                y: -12326,
-            },
-            {
-                x: "Subway",
-                y: -32125,
-            },
-            {
-                x: "Bus",
-                y: 50279,
-            },
-            {
-                x: "Car",
-                y: 94819,
-            },
-            {
-                x: "Boat",
-                y: 66350,
-            },
-            {
-                x: "Moto",
-                y: -92854,
-            },
-            {
-                x: "Moped",
-                y: 92879,
-            },
-            {
-                x: "Bicycle",
-                y: 43272,
-            },
-            {
-                x: "Others",
-                y: -14192,
-            },
-        ],
-    },
-    {
-        id: "Germany",
-        data: [
-            {
-                x: "Train",
-                y: 48961,
-            },
-            {
-                x: "Subway",
-                y: -20728,
-            },
-            {
-                x: "Bus",
-                y: 73743,
-            },
-            {
-                x: "Car",
-                y: -90951,
-            },
-            {
-                x: "Boat",
-                y: 22556,
-            },
-            {
-                x: "Moto",
-                y: -10717,
-            },
-            {
-                x: "Moped",
-                y: 50095,
-            },
-            {
-                x: "Bicycle",
-                y: -32067,
-            },
-            {
-                x: "Others",
-                y: -59123,
-            },
-        ],
-    },
-    {
-        id: "Norway",
-        data: [
-            {
-                x: "Train",
-                y: 59485,
-            },
-            {
-                x: "Subway",
-                y: -19917,
-            },
-            {
-                x: "Bus",
-                y: 41351,
-            },
-            {
-                x: "Car",
-                y: -34041,
-            },
-            {
-                x: "Boat",
-                y: 1205,
-            },
-            {
-                x: "Moto",
-                y: 74829,
-            },
-            {
-                x: "Moped",
-                y: -42406,
-            },
-            {
-                x: "Bicycle",
-                y: 13178,
-            },
-            {
-                x: "Others",
-                y: 60414,
-            },
-        ],
-    },
-    {
-        id: "Iceland",
-        data: [
-            {
-                x: "Train",
-                y: 82611,
-            },
-            {
-                x: "Subway",
-                y: 22359,
-            },
-            {
-                x: "Bus",
-                y: -49202,
-            },
-            {
-                x: "Car",
-                y: 62459,
-            },
-            {
-                x: "Boat",
-                y: -92128,
-            },
-            {
-                x: "Moto",
-                y: 80082,
-            },
-            {
-                x: "Moped",
-                y: 7981,
-            },
-            {
-                x: "Bicycle",
-                y: -63366,
-            },
-            {
-                x: "Others",
-                y: -48027,
-            },
-        ],
-    },
-    {
-        id: "UK",
-        data: [
-            {
-                x: "Train",
-                y: 21073,
-            },
-            {
-                x: "Subway",
-                y: 74701,
-            },
-            {
-                x: "Bus",
-                y: 21975,
-            },
-            {
-                x: "Car",
-                y: -39841,
-            },
-            {
-                x: "Boat",
-                y: 40392,
-            },
-            {
-                x: "Moto",
-                y: 98508,
-            },
-            {
-                x: "Moped",
-                y: 57432,
-            },
-            {
-                x: "Bicycle",
-                y: 87882,
-            },
-            {
-                x: "Others",
-                y: -28709,
-            },
-        ],
-    },
-    {
-        id: "Vietnam",
-        data: [
-            {
-                x: "Train",
-                y: -14991,
-            },
-            {
-                x: "Subway",
-                y: 5491,
-            },
-            {
-                x: "Bus",
-                y: -27812,
-            },
-            {
-                x: "Car",
-                y: -10829,
-            },
-            {
-                x: "Boat",
-                y: -10085,
-            },
-            {
-                x: "Moto",
-                y: 27205,
-            },
-            {
-                x: "Moped",
-                y: -81142,
-            },
-            {
-                x: "Bicycle",
-                y: -43939,
-            },
-            {
-                x: "Others",
-                y: -98853,
-            },
-        ],
     },
 ];
 
@@ -542,16 +212,6 @@ const lineData = [
     },
 ];
 
-const barData = [
-    { id: "june", "Key 1": 67, "Key 2": 52, "Key 3": 4 },
-    { id: "july", "Key 1": 142, "Key 2": 104, "Key 3": 112 },
-    { id: "aug", "Key 1": 113, "Key 2": 149, "Key 3": 88 },
-    { id: "sept", "Key 1": 136, "Key 2": 149, "Key 3": 37 },
-    { id: "oct", "Key 1": 60, "Key 2": 149, "Key 3": 55 },
-    { id: "nov", "Key 1": 192, "Key 2": 65, "Key 3": 5 },
-    { id: "dec", "Key 1": 146, "Key 2": 181, "Key 3": 193 },
-];
-
 interface ChartsProps {
     selectedUser: IUser | null;
     selectedToy: IToy | null;
@@ -563,9 +223,11 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
     const supabase = supabaseServerClient();
     const data_ = await dbGetConversation(
         supabase,
-        "24ecc593-098e-4550-b48a-6551f837fd8b"
+        "8c3af087-8d80-4536-8c76-062677448033",
     );
-    console.log("+++++", data_.length, data_);
+    // console.log("+++++", data_.length, data_);
+    const { cardData } = processData(data_, "days");
+
     return (
         <div>
             <div className="mt-2 mb-4 text-gray-800">
@@ -598,21 +260,25 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="my-4 text-lg font-bold text-gray-700">
                         Main Emotions
                     </h2>
-                    <div className="flex space-x-4">
-                        <div className="flex-grow">
+                    <div className="flex space-x-2">
+                        <div className="flex-grow w-40 h-40">
+                            {" "}
+                            {/* Fixed size example */}
                             <TopCard
-                                title="Joy"
-                                value="12.9%"
-                                delta={11.2}
+                                title={cardData.get("main_1")?.title ?? null}
+                                value={`${cardData.get("main_1")?.value ?? ""}%`}
+                                delta={cardData.get("main_1")?.change ?? 0}
                                 day={1}
                                 type="top"
                             />
                         </div>
-                        <div className="flex-grow">
+                        <div className="flex-grow w-40 h-40">
+                            {" "}
+                            {/* Fixed size example */}
                             <TopCard
-                                title="Excitement"
-                                value="12.1%"
-                                delta={-2.8}
+                                title={cardData.get("main_2")?.title ?? null}
+                                value={`${cardData.get("main_2")?.value ?? ""}%`}
+                                delta={cardData.get("main_2")?.change ?? 0}
                                 day={1}
                                 type="top"
                             />
@@ -624,21 +290,25 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="my-4 text-lg font-bold text-gray-700">
                         Significant Emotional Shifts
                     </h2>
-                    <div className="flex space-x-4">
-                        <div className="flex-grow">
+                    <div className="flex space-x-2">
+                        <div className="flex-grow w-40 h-40">
+                            {" "}
+                            {/* Fixed size example */}
                             <TopCard
-                                title="Anger"
-                                value="5.9%"
-                                delta={15.8}
+                                title={cardData.get("change_1")?.title ?? null}
+                                value={`${cardData.get("change_1")?.value ?? ""}%`}
+                                delta={cardData.get("change_1")?.change ?? 0}
                                 day={1}
                                 type="shift"
                             />
                         </div>
-                        <div className="flex-grow">
+                        <div className="flex-grow w-40 h-40">
+                            {" "}
+                            {/* Fixed size example */}
                             <TopCard
-                                title="Disappointment"
-                                value="3.2%"
-                                delta={-5.4}
+                                title={cardData.get("change_2")?.title ?? null}
+                                value={`${cardData.get("change_2")?.value ?? ""}%`}
+                                delta={cardData.get("change_2")?.change ?? 0}
                                 day={1}
                                 type="shift"
                             />
@@ -670,7 +340,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     Emotions Breakdown (left-right scrolling + sheet)
                 </h2>
                 <div className="h-[300px] lg:h-[400px]">
-                    <MyResponsiveBar data={data} />
+                    <MyResponsiveBar data={barData} />
                 </div>
             </div>
         </div>

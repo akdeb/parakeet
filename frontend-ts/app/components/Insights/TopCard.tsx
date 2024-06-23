@@ -11,7 +11,7 @@ import { TrendingUp } from "lucide-react";
 import { TrendingDown } from "lucide-react";
 
 interface CardProps {
-    title: string;
+    title: string | null;
     value: number | string | null;
     delta: number | null;
     day: number;
