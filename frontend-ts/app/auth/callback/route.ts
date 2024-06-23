@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
+import { defaultToyId } from "@/lib/data";
 
 // export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
             if (!userExists) {
                 // Create user if they don't exist
                 await createUser(supabase, user, {
-                    toy_id: user?.user_metadata?.toy_id,
+                    toy_id: user?.user_metadata?.toy_id ?? defaultToyId,
                 });
 
                 console.log("new user", user.email);

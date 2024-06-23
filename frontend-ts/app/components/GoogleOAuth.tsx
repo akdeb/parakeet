@@ -4,8 +4,13 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
 import { getBaseUrl } from "@/lib/utils";
+import { defaultToyId } from "@/lib/data";
 
-const GoogleOAuth = () => {
+interface GoogleOAuthProps {
+    toy_id?: string;
+}
+
+const GoogleOAuth: React.FC<GoogleOAuthProps> = ({ toy_id }) => {
     const supabase = createClientComponentClient();
     // console.log(new URL(getBaseUrl() + "/home").href);
 
@@ -19,6 +24,9 @@ const GoogleOAuth = () => {
                 // },
                 // redirectTo: new URL(getBaseUrl() + "/auth/callback").href,
                 redirectTo: `${location.origin}/auth/callback`,
+                queryParams: {
+                    toy_id: toy_id ?? defaultToyId,
+                },
             },
         });
     };

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { toys } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
