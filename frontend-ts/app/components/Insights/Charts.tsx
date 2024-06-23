@@ -286,7 +286,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
             <div className="flex flex-col md:flex-row md:space-x-8 mx-6-">
                 <div className="w-full order-2 md:order-1  md:flex-grow">
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
-                        Emotions Over Time and Forecast
+                    Sentiments Over Time and Forecast
                     </h2>
                     <div className="h-[300px] lg:h-96">
                         <MyResponsiveLine data={lineData} />
@@ -295,7 +295,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy,filter 
 
                 <div className="w-full order-1 md:order-2 md:w-72 md:flex-shrink-0">
                     <h2 className="mt-6 text-lg font-bold text-gray-700">
-                        Current Emotions Proportions
+                        Current Sentiment Proportions
                     </h2>
                     <div className="h-[300px] lg:h-96">
                         <MyResponsivePie data={pieData} />
