@@ -196,7 +196,7 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
     if (user) {
         const supabase = supabaseServerClient();
         const data = await dbGetConversation(supabase, user.user_id);
-        console.log("++++++", user);
+        // console.log("++++++", user);
         // console.log("+++++", data_.length, data_);
         const { cardData, barData, lineData, pieData } = processData(
             data,
