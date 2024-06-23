@@ -79,7 +79,7 @@ export const processData = (rawData: any[], filter: string) => {
     const cardData = getCardsData(prevAvgSorted, curAvgSorted);
     const barData = getBarData(prevAvgSorted, curAvgSorted, 10, filter);
 
-    const { lineData, pieData } = getLinedata(rawData);
+    const { lineData, pieData } = getLinePinedata(rawData);
     // print lineData to json
     console.log(JSON.stringify(lineData));
     console.log(JSON.stringify(pieData));
@@ -239,11 +239,7 @@ const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     return { prevAvgSorted, curAvgSorted };
 };
 
-const roundDecimal = function (num: number | null) {
-    if (num === null) {
-        return num;
-    }
-
+const roundDecimal = function (num: number) {
     if (num > 100 || num < -100) {
         return Math.round(num);
     } else if (num > 10 || num < -10) {
@@ -253,7 +249,7 @@ const roundDecimal = function (num: number | null) {
     }
 };
 
-export const getLinedata = (data: any) => {
+export const getLinePinedata = (data: any) => {
     const dailyScores: {
         [date: string]: {
             positive: number[];
@@ -335,17 +331,17 @@ export const getLinedata = (data: any) => {
         {
             id: "Positive",
             label: "Positive",
-            value: roundDecimal(lineData[2].data[idx].y),
+            value: roundDecimal(lineData[2].data[idx].y ?? 0), // Default to 0 if null
         },
         {
             id: "Neutral",
             label: "Neutral",
-            value: roundDecimal(lineData[1].data[idx].y),
+            value: roundDecimal(lineData[1].data[idx].y ?? 0), // Default to 0 if null
         },
         {
             id: "Negative",
             label: "Negative",
-            value: roundDecimal(lineData[0].data[idx].y),
+            value: roundDecimal(lineData[0].data[idx].y ?? 0), // Default to 0 if null
         },
     ];
 
