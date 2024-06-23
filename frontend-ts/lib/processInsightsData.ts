@@ -8,22 +8,27 @@ export const processData = (rawData: any[], filter: string) => {
 
     const previousPeriodData = filterDataByDate(rawData, previousPeriod);
     const currentPeriodData = filterDataByDate(rawData, currentPeriod);
-    
-    const {prevAvgSorted, curAvgSorted} = getSortedAvgData(previousPeriodData, currentPeriodData, 2);
 
-    console.log(curAvgSorted)
+    const { prevAvgSorted, curAvgSorted } = getSortedAvgData(
+        previousPeriodData,
+        currentPeriodData,
+        2,
+    );
+
+    console.log(curAvgSorted);
 
     const cardData = getCardsData(prevAvgSorted, curAvgSorted);
-    const barData = getBarData(prevAvgSorted, curAvgSorted, 10,filter);
+    const barData = getBarData(prevAvgSorted, curAvgSorted, 10, filter);
 
     return {
-        cardData,barData
+        cardData,
+        barData,
     };
 };
 
 const filterDataByDate = (data: any[], date: Date) => {
-    const targetDate_ = startOfDay(date);
-    const targetDate = subDays(targetDate_, 1);
+    const targetDate = startOfDay(date);
+    // const targetDate = subDays(targetDate_, 1);
 
     return data.filter((item) => {
         const createdAt = new Date(item.created_at);
@@ -59,7 +64,6 @@ const averages = (data: any[]) => {
 };
 
 const getCardsData = (prevAvg: any, curAvg: any) => {
-
     const changes: { [key: string]: number } = {};
 
     const cardData = new Map<
@@ -113,41 +117,41 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
     return cardData;
 };
 
-
 const getBarData = (
     prevAvg: { [key: string]: number },
     curAvg: { [key: string]: number },
     topN: number,
-    filter: string
-  ) => {
+    filter: string,
+) => {
     // Get first N of curAvg data
     const curAvgEntries = Object.entries(curAvg);
     const curAvgTopN = curAvgEntries.slice(0, topN);
-  
+
     // Determine the labels based on the filter
     let currentPeriodLabel = "Current Period";
     let previousPeriodLabel = "Previous Period";
-  
+
     if (filter === "days") {
-      currentPeriodLabel = "Today";
-      previousPeriodLabel = "Yesterday";
+        currentPeriodLabel = "Today";
+        previousPeriodLabel = "Yesterday";
     } else if (filter === "weeks") {
-      currentPeriodLabel = "This month";
-      previousPeriodLabel = "Last month";
+        currentPeriodLabel = "This month";
+        previousPeriodLabel = "Last month";
     }
-  
+
     // Map through curAvgTopN to create the desired schema
     const barData = curAvgTopN.map(([emotion, currentPeriodValue]) => {
-      const prevPeriodValue = prevAvg[emotion] !== undefined ? prevAvg[emotion] : 0;
-      return {
-        emotion,
-        [currentPeriodLabel]: roundDecimal(currentPeriodValue), // Ensure this is a number
-        [previousPeriodLabel]: roundDecimal(prevPeriodValue) // Ensure this is a number
-      };
+        const prevPeriodValue =
+            prevAvg[emotion] !== undefined ? prevAvg[emotion] : 0;
+        return {
+            emotion,
+            [currentPeriodLabel]: roundDecimal(currentPeriodValue), // Ensure this is a number
+            [previousPeriodLabel]: roundDecimal(prevPeriodValue), // Ensure this is a number
+        };
     });
-  
+
     return barData;
-  };
+};
 
 const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     const prevAvg = averages(prevData);
@@ -161,9 +165,8 @@ const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
         Object.entries(curAvg).sort(([, a], [, b]) => b - a),
     );
 
-    return {prevAvgSorted, curAvgSorted};
-
-}
+    return { prevAvgSorted, curAvgSorted };
+};
 
 const roundDecimal = function (num: number) {
     if (num > 100 || num < -100) {

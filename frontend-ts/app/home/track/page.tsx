@@ -1,6 +1,10 @@
 import Charts from "@/app/components/Insights/Charts";
 import { Badge } from "@/components/ui/badge";
+import { getUserById } from "@/db/users";
+import { defaultToyId } from "@/lib/data";
+import { getAllToys, getToyById } from "@/db/toys";
 import { getHumeAccessToken } from "@/lib/getHumeAccessToken";
+import supabaseServerClient from "@/db/supabaseServerClient";
 
 export default async function Home() {
     const accessToken = await getHumeAccessToken();
@@ -8,6 +12,15 @@ export default async function Home() {
     if (!accessToken) {
         throw new Error();
     }
+
+    const supabase = supabaseServerClient();
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    const dbUser = user ? await getUserById(supabase, user.id) : undefined;
+    const toy = await getToyById(supabase, dbUser?.toy_id ?? defaultToyId);
 
     return (
         <div className="flex flex-col gap-2 font-baloo2">
@@ -17,7 +30,8 @@ export default async function Home() {
             </div>
 
             <div className="">
-                <Charts selectedUser={null} selectedToy={null} filter="days" />
+                <Charts user={dbUser} toy={toy} filter="days" />
+                {/* <Charts user={dbUser} selectedToy={null} filter="days" /> */}
             </div>
         </div>
     );
