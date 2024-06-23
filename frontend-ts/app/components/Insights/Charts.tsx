@@ -9,27 +9,47 @@ import { processData } from "@/lib/processInsightsData";
 
 export const barData: BarChartData[] = [
     {
-        country: "Joy",
+        emotion: "Joy",
         "Current Period": 200,
         "Previou Period": 93,
     },
     {
-        country: "Excitement",
+        emotion: "Excitement",
         "Current Period": 188,
         "Previou Period": 40,
     },
     {
-        country: "Interest",
+        emotion: "Interest",
         "Current Period": 168,
         "Previou Period": 28,
     },
     {
-        country: "Determination",
+        emotion: "Determination",
         "Current Period": 165,
         "Previou Period": 107,
     },
     {
-        country: "Confusion",
+        emotion: "Confusion",
+        "Current Period": 145,
+        "Previou Period": 26,
+    },
+    {
+        emotion: "Confusion3",
+        "Current Period": 145,
+        "Previou Period": 26,
+    },
+    {
+        emotion: "Confusion4",
+        "Current Period": 145,
+        "Previou Period": 26,
+    },
+    {
+        emotion: "Confusion5",
+        "Current Period": 145,
+        "Previou Period": 26,
+    },
+    {
+        emotion: "Confusion6",
         "Current Period": 145,
         "Previou Period": 26,
     },
@@ -329,7 +349,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
             </div>
             <div className="w-full">
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
-                    Emotions Breakdown (left-right scrolling + sheet)
+                    Top 10 Emotions Breakdown (sheet)
                 </h2>
                 <div className="h-[300px] lg:h-[400px]">
                     <MyResponsiveBar data={barData} />

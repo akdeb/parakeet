@@ -12,7 +12,6 @@ export const processData = (rawData: any[], filter: string) => {
 
     const cardData = getCardsData(previousPeriodData, currentPeriodData, 2);
 
-    // return card data, line data, pie data and bar data
     return {
         cardData,
     };
@@ -123,6 +122,4 @@ const roundDecimal = function (num: number) {
     } else {
         return Math.round(num * 100) / 100;
     }
-
-    // return Math.round(num * 100) / 100;
 };
