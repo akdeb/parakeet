@@ -260,10 +260,8 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="my-4 text-lg font-bold text-gray-700">
                         Main Emotions
                     </h2>
-                    <div className="flex space-x-2">
-                        <div className="flex-grow w-40 h-40">
-                            {" "}
-                            {/* Fixed size example */}
+                    <div className="flex space-x-4">
+                        <div className="flex-grow">
                             <TopCard
                                 title={cardData.get("main_1")?.title ?? null}
                                 value={`${cardData.get("main_1")?.value ?? ""}%`}
@@ -272,9 +270,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 type="top"
                             />
                         </div>
-                        <div className="flex-grow w-40 h-40">
-                            {" "}
-                            {/* Fixed size example */}
+                        <div className="flex-grow">
                             <TopCard
                                 title={cardData.get("main_2")?.title ?? null}
                                 value={`${cardData.get("main_2")?.value ?? ""}%`}
@@ -290,10 +286,8 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                     <h2 className="my-4 text-lg font-bold text-gray-700">
                         Significant Emotional Shifts
                     </h2>
-                    <div className="flex space-x-2">
-                        <div className="flex-grow w-40 h-40">
-                            {" "}
-                            {/* Fixed size example */}
+                    <div className="flex space-x-4">
+                        <div className="flex-grow">
                             <TopCard
                                 title={cardData.get("change_1")?.title ?? null}
                                 value={`${cardData.get("change_1")?.value ?? ""}%`}
@@ -302,9 +296,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                                 type="shift"
                             />
                         </div>
-                        <div className="flex-grow w-40 h-40">
-                            {" "}
-                            {/* Fixed size example */}
+                        <div className="flex-grow">
                             <TopCard
                                 title={cardData.get("change_2")?.title ?? null}
                                 value={`${cardData.get("change_2")?.value ?? ""}%`}

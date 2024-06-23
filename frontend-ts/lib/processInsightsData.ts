@@ -90,31 +90,39 @@ const getCardsData = (prevData: any, curData: any, topN: number) => {
 
     cardData.set("main_1", {
         title: firstCurAvg[0],
-        value: round2decimal(firstCurAvg[1]),
-        change: round2decimal(changesSorted[firstCurAvg[0]]),
+        value: roundDecimal(firstCurAvg[1]),
+        change: roundDecimal(changesSorted[firstCurAvg[0]]),
     });
 
     cardData.set("main_2", {
         title: secondCurAvg[0],
-        value: round2decimal(secondCurAvg[1]),
-        change: round2decimal(changesSorted[secondCurAvg[0]]),
+        value: roundDecimal(secondCurAvg[1]),
+        change: roundDecimal(changesSorted[secondCurAvg[0]]),
     });
 
     cardData.set("change_1", {
         title: firstChange[0],
-        value: round2decimal(curAvgSorted[firstChange[0]]),
-        change: round2decimal(firstChange[1]),
+        value: roundDecimal(curAvgSorted[firstChange[0]]),
+        change: roundDecimal(firstChange[1]),
     });
 
     cardData.set("change_2", {
         title: lastChange[0],
-        value: round2decimal(curAvgSorted[lastChange[0]]),
-        change: round2decimal(lastChange[1]),
+        value: roundDecimal(curAvgSorted[lastChange[0]]),
+        change: roundDecimal(lastChange[1]),
     });
 
     return cardData;
 };
 
-const round2decimal = function (num: number) {
-    return Math.round(num * 100) / 100;
+const roundDecimal = function (num: number) {
+    if (num > 100 || num < -100) {
+        return Math.round(num);
+    } else if (num > 10 || num < -10) {
+        return Math.round(num * 10) / 10;
+    } else {
+        return Math.round(num * 100) / 100;
+    }
+
+    // return Math.round(num * 100) / 100;
 };
