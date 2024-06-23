@@ -17,7 +17,8 @@ export default function Footer() {
                 </Button>
             </a>
             <Label className="font-normal text-xs text-gray-500">
-                Parakeet AI © {new Date().getFullYear()} All rights reserved
+                Parakeet AI (a project of HeyHaddock Inc.) ©{" "}
+                {new Date().getFullYear()} All rights reserved.
             </Label>
         </footer>
     );

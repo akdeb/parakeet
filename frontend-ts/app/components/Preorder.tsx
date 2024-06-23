@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Preorder = () => {
     const deliveryInfo =
@@ -31,9 +32,11 @@ const Preorder = () => {
                     </p>
                 </div>
             </div>
-            <Button variant="primary" className="font-bold" size="lg">
-                Preorder
-            </Button>
+            <Link href="https://buy.stripe.com/4gweUX6Po6Hx6oEeUZ">
+                <Button variant="primary" className="font-bold" size="lg">
+                    Preorder
+                </Button>
+            </Link>
         </div>
     );
 };
