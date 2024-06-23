@@ -6,9 +6,35 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Toggle } from "@/components/ui/toggle";
 import MicFFT from "@/app/components/MicFFT";
 import { cn } from "@/lib/utils";
+import moment from "moment";
 
-export default function Controls() {
-    const { disconnect, status, isMuted, unmute, mute, micFft } = useVoice();
+interface ControlsProps {
+    userState: IUser;
+    updateUserState: (user: IUser) => void;
+}
+
+export default function Controls({
+    userState,
+    updateUserState,
+}: ControlsProps) {
+    const {
+        disconnect,
+        status,
+        isMuted,
+        unmute,
+        mute,
+        micFft,
+        callDurationTimestamp,
+    } = useVoice();
+
+    const addSessionTime = (timestamp: string) => {
+        const durationObj = moment.duration(timestamp);
+        const totalSeconds = durationObj.asSeconds();
+        updateUserState({
+            ...userState,
+            session_time: userState.session_time + totalSeconds,
+        });
+    };
 
     return (
         <div
@@ -61,6 +87,9 @@ export default function Controls() {
                             className={"flex items-center gap-1"}
                             onClick={() => {
                                 disconnect();
+                                addSessionTime(
+                                    callDurationTimestamp ?? "00:00:00"
+                                );
                             }}
                             variant={"destructive"}
                         >

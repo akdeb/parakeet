@@ -72,7 +72,7 @@ export default function ClientComponent({
                                 selectedToy={selectedToy}
                             />
                         )}
-                        <Controls />
+                        {/* <Controls /> */}
                         {/* <StartCall
                             selectedUser={selectedUser}
                             selectedToy={selectedToy}

@@ -6,7 +6,7 @@ import Messages from "./Messages";
 import { VoiceProvider } from "@humeai/voice-react";
 import Controls from "./Controls";
 import StartCall from "./StartCall";
-import { constructUserPrompt } from "@/lib/utils";
+import { constructUserPrompt, getCreditsRemaining } from "@/lib/utils";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { updateUser } from "@/db/users";
 import _ from "lodash";
@@ -22,10 +22,18 @@ const Playground: React.FC<PlaygroundProps> = ({
     selectedToy,
     accessToken,
 }) => {
+    const [userState, setUserState] = useState<IUser>(selectedUser);
     const supabase = createClientComponentClient();
     const [chatGroupId, setChatGroupId] = useState<string | null>(
         selectedUser.most_recent_chat_group_id
     );
+
+    const updateUserState = async (user: IUser) => {
+        setUserState(user);
+        await updateUser(supabase, _.omit(user, "toy"), user.user_id);
+    };
+
+    const creditsRemaining = getCreditsRemaining(userState);
 
     React.useEffect(() => {
         const userUpdate = async () => {
@@ -33,15 +41,15 @@ const Playground: React.FC<PlaygroundProps> = ({
                 await updateUser(
                     supabase,
                     {
-                        ..._.omit(selectedUser, "toy"),
+                        ..._.omit(userState, "toy"),
                         most_recent_chat_group_id: chatGroupId,
                     },
-                    selectedUser.user_id
+                    userState.user_id
                 );
             }
         };
         userUpdate();
-    }, [chatGroupId, selectedUser]);
+    }, [chatGroupId, userState]);
 
     const timeout = useRef<number | null>(null);
     const ref: any = useRef<ComponentRef<typeof Messages> | null>(null);
@@ -51,10 +59,10 @@ const Playground: React.FC<PlaygroundProps> = ({
             <VoiceProvider
                 auth={{ type: "accessToken", value: accessToken }}
                 onMessage={(message) => {
-                    console.log(message);
+                    // console.log(message);
                     if (message.type === "chat_metadata") {
                         setChatGroupId(message.chat_group_id);
-                        console.log("chatGroupId", message.chat_group_id);
+                        // console.log("chatGroupId", message.chat_group_id);
                     }
                     if (timeout.current) {
                         window.clearTimeout(timeout.current);
@@ -76,33 +84,40 @@ const Playground: React.FC<PlaygroundProps> = ({
                     "6947ac53-5f3b-4499-abc5-f8b368552cb6"
                 }
                 sessionSettings={{
-                    systemPrompt: constructUserPrompt(
-                        selectedUser,
-                        selectedToy
-                    ),
+                    systemPrompt: constructUserPrompt(userState, selectedToy),
                 }}
-                resumedChatGroupId={
-                    selectedUser.most_recent_chat_group_id ?? undefined
-                }
+                // resumedChatGroupId={
+                //     selectedUser.most_recent_chat_group_id ?? undefined
+                // }
             >
-                <div className="flex flex-row items-center gap-4">
-                    <h1 className="text-4xl font-semibold">Playground</h1>
-                    <StartCall
-                        chatGroupId={chatGroupId}
-                        selectedUser={selectedUser}
-                        selectedToy={selectedToy}
-                    />
+                <div className="flex gap-2 flex-col">
+                    <div className="flex flex-row items-center gap-4">
+                        <h1 className="text-4xl font-semibold">Playground</h1>
+                        <StartCall
+                            chatGroupId={chatGroupId}
+                            selectedUser={userState}
+                            selectedToy={selectedToy}
+                            disabled={creditsRemaining === 0}
+                        />
+                    </div>
+                    <p className="text-sm text-gray-600">
+                        {creditsRemaining} credits remaining
+                    </p>
                 </div>
+
                 <ChildPlayground
-                    selectedUser={selectedUser}
+                    selectedUser={userState}
                     selectedToy={selectedToy}
                 >
                     <Messages
                         ref={ref}
-                        selectedUser={selectedUser}
+                        selectedUser={userState}
                         selectedToy={selectedToy}
                     />
-                    <Controls />
+                    <Controls
+                        userState={userState}
+                        updateUserState={updateUserState}
+                    />
                 </ChildPlayground>
             </VoiceProvider>
         </>

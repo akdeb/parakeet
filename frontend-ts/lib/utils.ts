@@ -5,6 +5,13 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+export const getCreditsRemaining = (user: IUser) => {
+    // starts with 50 credits
+    // max session time is 10 minutes or 600 seconds
+
+    return Math.round(50 - (5 * user.session_time) / 60);
+};
+
 export const constructUserPrompt = (user: IUser, toy: IToy) => {
     return `YOU ARE: ${toy.expanded_prompt}
     

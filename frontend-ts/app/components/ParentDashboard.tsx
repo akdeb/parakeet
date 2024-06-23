@@ -22,9 +22,10 @@ import { Separator } from "@/components/ui/separator";
 import { updateUser } from "@/db/users";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect } from "react";
+import { getCreditsRemaining } from "@/lib/utils";
 
 interface ParentDashboardProps {
-    selectedUser: IUser | null;
+    selectedUser: IUser;
     // chooseUser: (user: IUser) => void;
     selectedToy: IToy;
     // chooseToy: (toy: IToy) => void;
@@ -103,15 +104,25 @@ const ParentDashboard: React.FC<ParentDashboardProps> = ({
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="flex flex-col gap-8 mb-4"
                 >
-                    <div className="flex flex-row gap-4 items-center font-baloo2">
-                        <h1 className="text-4xl font-semibold">
-                            Parent controls
-                        </h1>
-                        <div className="flex flex-row gap-2 justify-between items-center">
-                            <Button variant="default" size="sm" type="submit">
-                                Save
-                            </Button>
+                    <div className="flex flex-col gap-2 font-baloo2">
+                        <div className="flex flex-row gap-4 items-center">
+                            <h1 className="text-4xl font-semibold">
+                                Parent controls
+                            </h1>
+                            <div className="flex flex-row gap-2 justify-between items-center">
+                                <Button
+                                    variant="default"
+                                    size="sm"
+                                    type="submit"
+                                >
+                                    Save
+                                </Button>
+                            </div>
                         </div>
+                        <p className="text-sm text-gray-600">
+                            {getCreditsRemaining(selectedUser)} credits
+                            remaining
+                        </p>
                     </div>
                     <FormField
                         control={form.control}
@@ -226,6 +237,34 @@ const ParentDashboard: React.FC<ParentDashboardProps> = ({
                                         }}
                                     />
                                 ))}
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="child_name"
+                        render={({ field }) => (
+                            <FormItem className="w-full rounded-md">
+                                <FormLabel className="flex flex-row gap-4 items-center">
+                                    Logged in as
+                                </FormLabel>
+                                {/* <FormDescription>
+                            Give your newsletter a name that describes its
+                            content.
+                        </FormDescription> */}
+                                <FormControl>
+                                    <Input
+                                        // autoFocus
+                                        disabled
+                                        value={selectedUser?.email}
+                                        className="max-w-screen-sm h-10 bg-white"
+                                        autoComplete="on"
+                                        style={{
+                                            fontSize: 16,
+                                        }}
+                                    />
+                                </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
