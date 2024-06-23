@@ -202,6 +202,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
     const { cardData,barData } = processData(data_, "days");
 
 
+
     return (
         <div>
             <div className="mt-2 mb-4 text-gray-800">
