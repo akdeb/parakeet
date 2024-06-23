@@ -3,7 +3,6 @@
 // install (please try to align the version of installed @nivo packages)
 // yarn add @nivo/bar
 import { ResponsiveBar } from "@nivo/bar";
-import { ResponsiveLine } from "@nivo/line";
 import { FC } from "react";
 
 // make sure parent container have a defined height when using
@@ -19,9 +18,9 @@ type MyResponsiveBarProps = {
 export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data }) => (
     <ResponsiveBar
         data={data}
-        keys={["Current Period", "Previou Period"]}
+        keys={["Current Period", "Previous Period"]}
         indexBy="emotion"
-        margin={{ top: 20, right: 10, bottom: 55, left: 55 }}
+        margin={{ top: 20, right: 35, bottom: 80, left: 55 }}
         padding={0.3}
         groupMode="grouped"
         valueScale={{ type: "linear" }}
@@ -34,19 +33,11 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data }) => (
             modifiers: [["darker", 1.6]],
         }}
         axisTop={null}
-        // // axisRight={{
-        // //     tickSize: 5,
-        // //     tickPadding: 5,
-        // //     tickRotation: 0,
-        // //     legend: "food",
-        // //     legendPosition: "middle",
-        // //     legendOffset: 40,
-        // //     truncateTickAt: 0,
-        // // }}
+        axisRight={null}
         axisBottom={{
             tickSize: 5,
             tickPadding: 5,
-            tickRotation: 0,
+            tickRotation: 30,
             // legend: "country",
             legendPosition: "middle",
             legendOffset: 32,
@@ -56,7 +47,7 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Score",
+            legend: "Score (%)",
             legendPosition: "middle",
             legendOffset: -50,
             truncateTickAt: 0,
@@ -76,7 +67,7 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data }) => (
                 direction: "row",
                 justify: false,
                 translateX: 0,
-                translateY: 55,
+                translateY: 80,
                 itemsSpacing: 2,
                 itemWidth: 120,
                 itemHeight: 20,

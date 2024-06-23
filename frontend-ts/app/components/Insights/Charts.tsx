@@ -7,53 +7,6 @@ import { MyResponsiveHeatMap } from "./Heatmap";
 import { MyResponsiveLine } from "./LineChart";
 import { processData } from "@/lib/processInsightsData";
 
-export const barData: BarChartData[] = [
-    {
-        emotion: "Joy",
-        "Current Period": 200,
-        "Previou Period": 93,
-    },
-    {
-        emotion: "Excitement",
-        "Current Period": 188,
-        "Previou Period": 40,
-    },
-    {
-        emotion: "Interest",
-        "Current Period": 168,
-        "Previou Period": 28,
-    },
-    {
-        emotion: "Determination",
-        "Current Period": 165,
-        "Previou Period": 107,
-    },
-    {
-        emotion: "Confusion",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-    {
-        emotion: "Confusion3",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-    {
-        emotion: "Confusion4",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-    {
-        emotion: "Confusion5",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-    {
-        emotion: "Confusion6",
-        "Current Period": 145,
-        "Previou Period": 26,
-    },
-];
 
 export const pieData: PieChartData[] = [
     {
@@ -246,7 +199,8 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
         "8c3af087-8d80-4536-8c76-062677448033",
     );
     // console.log("+++++", data_.length, data_);
-    const { cardData } = processData(data_, "days");
+    const { cardData,barData } = processData(data_, "days");
+
 
     return (
         <div>
@@ -351,7 +305,7 @@ const Charts: React.FC<ChartsProps> = async ({ selectedUser, selectedToy }) => {
                 <h2 className="mt-6 text-lg font-bold text-gray-700">
                     Top 10 Emotions Breakdown (sheet)
                 </h2>
-                <div className="h-[300px] lg:h-[400px]">
+                <div className="h-[300px] lg:h-[450px]">
                     <MyResponsiveBar data={barData} />
                 </div>
             </div>
