@@ -1,4 +1,3 @@
-import { defaultToyId } from "@/lib/data";
 import { type SupabaseClient, type User } from "@supabase/auth-helpers-nextjs";
 
 export const createUser = async (
@@ -18,6 +17,7 @@ export const createUser = async (
             toy_id: userProps.toy_id, // selecting whisker
             most_recent_chat_group_id: null,
             modules: ["math", "science"],
+            session_time: 0,
         } as IUser,
     ]);
 

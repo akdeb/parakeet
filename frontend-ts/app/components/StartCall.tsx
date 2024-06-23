@@ -14,12 +14,14 @@ interface StartCallProps {
     selectedUser: IUser | null;
     selectedToy: IToy | null;
     chatGroupId: string | null;
+    disabled: boolean;
 }
 
 const StartCall: React.FC<StartCallProps> = ({
     selectedUser,
     selectedToy,
     chatGroupId,
+    disabled,
 }) => {
     const {
         status,
@@ -30,6 +32,7 @@ const StartCall: React.FC<StartCallProps> = ({
         sendAssistantInput,
         sendPauseAssistantMessage,
         sendSessionSettings,
+        callDurationTimestamp,
     } = useVoice();
     const supabase = createClientComponentClient();
 
@@ -93,7 +96,8 @@ const StartCall: React.FC<StartCallProps> = ({
                             disabled={
                                 status.value === "connected" ||
                                 !selectedUser ||
-                                !selectedToy
+                                !selectedToy ||
+                                disabled
                             }
                             className={"z-50 flex items-center gap-1.5"}
                             onClick={() => {

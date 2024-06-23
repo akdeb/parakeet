@@ -4,6 +4,7 @@ declare global {
     interface IUser {
         user_id: string;
         parent_name: string;
+        email: string;
         child_name: string;
         child_persona: string;
         child_age: number;
@@ -11,6 +12,7 @@ declare global {
         toy?: IToy;
         modules: Module[];
         most_recent_chat_group_id: string | null;
+        session_time: number;
     }
 
     interface IConversation {
