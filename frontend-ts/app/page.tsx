@@ -13,13 +13,13 @@ const Sections = [
         title: "A companion for your child",
         description:
             "Our toys are designed to be thoughtful and engaging companions for your child.",
-        imageSrc: "/coco2.png",
+        imageSrc: "/companion.png",
     },
     {
         title: "Fostering a growth mindset",
         description:
             "Our toys are designed to foster a growth mindset in your child.",
-        imageSrc: "/whisker2.png",
+        imageSrc: "/fostering.png",
         isImageRight: true,
     },
     {
