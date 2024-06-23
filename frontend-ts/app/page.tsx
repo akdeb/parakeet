@@ -26,7 +26,7 @@ const Sections = [
         title: "AI-driven insights for parents. Privacy first.",
         description:
             "Our toys provide insights to parents on their child's learning and emotional growth. We take privacy seriously and all personal data is encrypted.",
-        imageSrc: "/whisker2.png",
+        imageSrc: "/parents.png",
     },
 ];
 
