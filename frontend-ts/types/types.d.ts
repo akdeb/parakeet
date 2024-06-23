@@ -1,6 +1,12 @@
 // types/type.d.ts
 
 declare global {
+    interface IInbound {
+        inbound_id?: string;
+        name: string;
+        email: string;
+        type: "demo" | "preorder";
+    }
     interface IUser {
         user_id: string;
         parent_name: string;

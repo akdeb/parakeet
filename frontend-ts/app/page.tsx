@@ -61,9 +61,7 @@ export default async function Home() {
                     </p>
                 </div>
                 <Products allToys={allToys} toy={toy!} user={dbUser} />
-                <PlaceOrder>
-                    <Preorder />
-                </PlaceOrder>
+                <Preorder />
                 {Sections.map((section, index) => (
                     <LandingPageSection key={index} {...section} />
                 ))}

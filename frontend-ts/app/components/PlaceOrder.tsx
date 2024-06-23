@@ -1,5 +1,3 @@
-"use client";
-
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
@@ -27,6 +25,8 @@ import React from "react";
 // import parse, { Element } from "html-react-parser";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createInbound } from "@/db/inbound";
 
 function ProfileForm({
     className,
@@ -36,16 +36,18 @@ function ProfileForm({
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [error, setError] = React.useState("");
+    const supabase = createClientComponentClient();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (name && email) {
-            await fetch("/api/contact-us", {
-                method: "POST",
-                body: JSON.stringify({ name, email }),
+            await createInbound(supabase, {
+                name,
+                email,
+                type: "demo",
             });
             toast({
-                title: "We can't wait to meet you!",
+                title: "We can't wait to demo you!",
                 description:
                     "Thanks for getting in touch. We will reach out within 24 hours.",
                 duration: 5000,
@@ -101,13 +103,13 @@ const PlaceOrder: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const closeModal = () => setOpen(false);
     const subText = (
-        <p>
+        <>
             {"You can now preorder a Parakeet toy for your child. Get "}
             <span className="font-bold">25% off</span>
             {" when you order now. See a demo first →"}
-        </p>
+        </>
     );
-    const titleText = "See Demo before Preorder";
+    const titleText = "See a demo";
 
     if (isDesktop) {
         return (

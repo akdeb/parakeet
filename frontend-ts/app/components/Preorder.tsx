@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import PlaceOrder from "./PlaceOrder";
 
 const Preorder = () => {
     const deliveryInfo =
@@ -38,13 +41,15 @@ const Preorder = () => {
                         Preorder
                     </Button>
                 </Link>
-                <Button
-                    variant="primary_outline"
-                    className="font-bold"
-                    size="lg"
-                >
-                    See demo
-                </Button>
+                <PlaceOrder>
+                    <Button
+                        variant="primary_outline"
+                        className="font-bold"
+                        size="lg"
+                    >
+                        See demo
+                    </Button>
+                </PlaceOrder>
             </div>
         </div>
     );
