@@ -62,7 +62,7 @@ export default async function Home() {
         data: { user },
     } = await supabase.auth.getUser();
 
-    console.log(user);
+    // console.log(user);
 
     const dbUser = user ? await getUserById(supabase, user.id) : undefined;
     const allToys = await getAllToys(supabase);

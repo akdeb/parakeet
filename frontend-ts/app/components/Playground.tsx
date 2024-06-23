@@ -59,10 +59,10 @@ const Playground: React.FC<PlaygroundProps> = ({
             <VoiceProvider
                 auth={{ type: "accessToken", value: accessToken }}
                 onMessage={(message) => {
-                    console.log(message);
+                    // console.log(message);
                     if (message.type === "chat_metadata") {
                         setChatGroupId(message.chat_group_id);
-                        console.log("chatGroupId", message.chat_group_id);
+                        // console.log("chatGroupId", message.chat_group_id);
                     }
                     if (timeout.current) {
                         window.clearTimeout(timeout.current);

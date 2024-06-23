@@ -58,14 +58,14 @@ const StartCall: React.FC<StartCallProps> = ({
     React.useEffect(() => {
         if (lastVoiceMessage) {
             insertConversation(lastVoiceMessage);
-            console.log("lastVoiceMessage", lastVoiceMessage);
+            // console.log("lastVoiceMessage", lastVoiceMessage);
         }
     }, [lastVoiceMessage, insertConversation]);
 
     React.useEffect(() => {
         if (lastUserMessage) {
             insertConversation(lastUserMessage);
-            console.log("lastUserMessage", lastUserMessage);
+            // console.log("lastUserMessage", lastUserMessage);
         }
     }, [lastUserMessage, insertConversation]);
 
