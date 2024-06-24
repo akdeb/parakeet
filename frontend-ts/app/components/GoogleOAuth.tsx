@@ -14,6 +14,8 @@ const GoogleOAuth: React.FC<GoogleOAuthProps> = ({ toy_id }) => {
     const supabase = createClientComponentClient();
     // console.log(new URL(getBaseUrl() + "/home").href);
 
+    console.log("toy_id", toy_id);
+
     const googleLogin = async () => {
         await supabase.auth.signInWithOAuth({
             provider: "google",
