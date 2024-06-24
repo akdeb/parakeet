@@ -1,6 +1,7 @@
 import asyncio
 from dotenv import load_dotenv
 from hume import HumeVoiceClient, MicrophoneInterface
+import os
 
 load_dotenv();
 
