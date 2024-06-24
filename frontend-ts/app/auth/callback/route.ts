@@ -13,7 +13,10 @@ import { defaultToyId } from "@/lib/data";
 export async function GET(request: NextRequest) {
     const requestUrl = new URL(request.url);
     const code = requestUrl.searchParams.get("code");
+    const queryParamsToyId = requestUrl.searchParams.get("toy_id");
     const next = requestUrl.searchParams.get("next") ?? "/";
+
+    console.log("foobaz", requestUrl.searchParams);
 
     if (code) {
         const supabase = createRouteHandlerClient<Database>({ cookies });
@@ -23,12 +26,17 @@ export async function GET(request: NextRequest) {
             data: { user },
         } = await supabase.auth.getUser();
 
+        console.log("fooblar", user);
+
         if (user) {
             const userExists = await doesUserExist(supabase, user);
             if (!userExists) {
                 // Create user if they don't exist
                 await createUser(supabase, user, {
-                    toy_id: user?.user_metadata?.toy_id ?? defaultToyId,
+                    toy_id:
+                        user?.user_metadata?.toy_id ??
+                        queryParamsToyId ??
+                        defaultToyId,
                 });
 
                 console.log("new user", user.email);

@@ -9,6 +9,7 @@ declare global {
     }
     interface IUser {
         user_id: string;
+        avatar_url: string;
         parent_name: string;
         email: string;
         child_name: string;
