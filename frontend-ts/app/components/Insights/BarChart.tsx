@@ -36,7 +36,7 @@ export const MyResponsiveBar: FC<MyResponsiveBarProps> = ({ data, filter }) => {
             data={data}
             keys={keys}
             indexBy="emotion"
-            margin={{ top: 20, right: 35, bottom: 80, left: 55 }}
+            margin={{ top: 20, right: 54, bottom: 80, left: 55 }}
             padding={0.3}
             groupMode="grouped"
             valueScale={{ type: "linear" }}

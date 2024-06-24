@@ -158,8 +158,11 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
         return new Map();
     }
 
-    const firstChange = changesEntries[0];
+    let firstChange: [string, number];
     let lastChange: [string, number];
+
+    firstChange = changesEntries[0];
+
     if (changesEntries[changesEntries.length - 1][1] < 0) {
         lastChange = changesEntries[changesEntries.length - 1];
     } else {
