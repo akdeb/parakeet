@@ -3,7 +3,6 @@ import supabaseServerClient from "@/db/supabaseServerClient";
 import TopCard from "@/app/components/Insights/TopCard";
 import { MyResponsiveBar } from "./BarChart";
 import { MyResponsivePie } from "./PieChart";
-import { MyResponsiveHeatMap } from "./Heatmap";
 import { MyResponsiveLine } from "./LineChart";
 import { processData } from "@/lib/processInsightsData";
 
@@ -185,8 +184,8 @@ import { processData } from "@/lib/processInsightsData";
 // ];
 
 interface ChartsProps {
-    user?: IUser;
-    toy?: IToy;
+    user: IUser;
+    toy: IToy;
     filter: string;
 }
 
@@ -200,7 +199,7 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
         // console.log("+++++", data_.length, data_);
         const { cardData, barData, lineData, pieData } = processData(
             data,
-            filter,
+            filter
         );
 
         return (
@@ -242,7 +241,9 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                                     title={
                                         cardData.get("main_1")?.title ?? null
                                     }
-                                    value={`${cardData.get("main_1")?.value ?? ""}%`}
+                                    value={`${
+                                        cardData.get("main_1")?.value ?? ""
+                                    }%`}
                                     delta={cardData.get("main_1")?.change ?? 0}
                                     filter={filter}
                                     type="top"
@@ -253,7 +254,9 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                                     title={
                                         cardData.get("main_2")?.title ?? null
                                     }
-                                    value={`${cardData.get("main_2")?.value ?? ""}%`}
+                                    value={`${
+                                        cardData.get("main_2")?.value ?? ""
+                                    }%`}
                                     delta={cardData.get("main_2")?.change ?? 0}
                                     filter={filter}
                                     type="top"
@@ -272,7 +275,9 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                                     title={
                                         cardData.get("change_1")?.title ?? null
                                     }
-                                    value={`${cardData.get("change_1")?.value ?? ""}%`}
+                                    value={`${
+                                        cardData.get("change_1")?.value ?? ""
+                                    }%`}
                                     delta={
                                         cardData.get("change_1")?.change ?? 0
                                     }
@@ -285,7 +290,9 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                                     title={
                                         cardData.get("change_2")?.title ?? null
                                     }
-                                    value={`${cardData.get("change_2")?.value ?? ""}%`}
+                                    value={`${
+                                        cardData.get("change_2")?.value ?? ""
+                                    }%`}
                                     delta={
                                         cardData.get("change_2")?.change ?? 0
                                     }

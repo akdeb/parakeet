@@ -3,16 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { getUserById } from "@/db/users";
 import { defaultToyId } from "@/lib/data";
 import { getAllToys, getToyById } from "@/db/toys";
-import { getHumeAccessToken } from "@/lib/getHumeAccessToken";
 import supabaseServerClient from "@/db/supabaseServerClient";
 
 export default async function Home() {
-    const accessToken = await getHumeAccessToken();
-
-    if (!accessToken) {
-        throw new Error();
-    }
-
     const supabase = supabaseServerClient();
 
     const {
@@ -30,7 +23,7 @@ export default async function Home() {
             </div>
 
             <div className="">
-                <Charts user={dbUser} toy={toy} filter="days" />
+                <Charts user={dbUser!} toy={toy!} filter="days" />
                 {/* <Charts user={dbUser} selectedToy={null} filter="days" /> */}
             </div>
         </div>

@@ -10,7 +10,7 @@ export const createUser = async (
         {
             user_id: user.id,
             email: user.email,
-            parent_name: "",
+            parent_name: user.user_metadata?.name ?? "",
             child_name: "",
             child_age: 5,
             child_persona: "",
@@ -18,6 +18,7 @@ export const createUser = async (
             most_recent_chat_group_id: null,
             modules: ["math", "science"],
             session_time: 0,
+            avatar_url: user.user_metadata?.avatar_url ?? "",
         } as IUser,
     ]);
 
