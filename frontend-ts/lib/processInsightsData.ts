@@ -70,7 +70,7 @@ export const processData = (rawData: any[], filter: string) => {
     const { prevAvgSorted, curAvgSorted } = getSortedAvgData(
         previousPeriodData,
         currentPeriodData,
-        2,
+        2
     );
 
     // console.log(curAvgSorted);
@@ -145,7 +145,7 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
     }
 
     const changesSorted = Object.fromEntries(
-        Object.entries(changes).sort(([, a], [, b]) => b - a),
+        Object.entries(changes).sort(([, a], [, b]) => b - a)
     );
 
     const curAvgEntries = Object.entries(curAvg);
@@ -153,13 +153,13 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
 
     // Get the first and last k,v in changesSorted
     const changesEntries = Object.entries(changesSorted);
-    const firstChange = changesEntries[0];
-    let lastChange: [string, number];
 
-    if (Object.keys(prevAvg).length === 0 || Object.keys(curAvg).length === 0) {
+    if (changesEntries.length === 0) {
         return new Map();
     }
 
+    const firstChange = changesEntries[0];
+    let lastChange: [string, number];
     if (changesEntries[changesEntries.length - 1][1] < 0) {
         lastChange = changesEntries[changesEntries.length - 1];
     } else {
@@ -197,7 +197,7 @@ const getBarData = (
     prevAvg: { [key: string]: number },
     curAvg: { [key: string]: number },
     topN: number,
-    filter: string,
+    filter: string
 ) => {
     // Get first N of curAvg data
     const curAvgEntries = Object.entries(curAvg);
@@ -234,11 +234,11 @@ const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     const curAvg = averages(curData);
 
     const prevAvgSorted = Object.fromEntries(
-        Object.entries(prevAvg).sort(([, a], [, b]) => b - a),
+        Object.entries(prevAvg).sort(([, a], [, b]) => b - a)
     );
 
     const curAvgSorted = Object.fromEntries(
-        Object.entries(curAvg).sort(([, a], [, b]) => b - a),
+        Object.entries(curAvg).sort(([, a], [, b]) => b - a)
     );
 
     return { prevAvgSorted, curAvgSorted };
