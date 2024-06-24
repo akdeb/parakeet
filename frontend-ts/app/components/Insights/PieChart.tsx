@@ -43,7 +43,7 @@ const theme = {
 export const MyResponsivePie: FC<MyResponsivePieProps> = ({ data }) => (
     <ResponsivePie
         data={data}
-        margin={{ top: 20, right: 10, bottom: 40, left: 10 }}
+        margin={{ top: 15, right: 5, bottom: 40, left: 5 }}
         innerRadius={0.5}
         padAngle={0.7}
         cornerRadius={3}

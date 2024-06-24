@@ -70,7 +70,7 @@ export const processData = (rawData: any[], filter: string) => {
     const { prevAvgSorted, curAvgSorted } = getSortedAvgData(
         previousPeriodData,
         currentPeriodData,
-        2
+        2,
     );
 
     // console.log(curAvgSorted);
@@ -145,7 +145,7 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
     }
 
     const changesSorted = Object.fromEntries(
-        Object.entries(changes).sort(([, a], [, b]) => b - a)
+        Object.entries(changes).sort(([, a], [, b]) => b - a),
     );
 
     const curAvgEntries = Object.entries(curAvg);
@@ -161,12 +161,15 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
     let firstChange: [string, number];
     let lastChange: [string, number];
 
-    firstChange = changesEntries[0];
-
-    if (changesEntries[changesEntries.length - 1][1] < 0) {
-        lastChange = changesEntries[changesEntries.length - 1];
-    } else {
+    if (changesEntries[0][1] < 0) {
+        firstChange = changesEntries[changesEntries.length - 1];
+        lastChange = changesEntries[changesEntries.length - 2];
+    } else if (changesEntries[changesEntries.length - 1][1] > 0) {
+        firstChange = changesEntries[0];
         lastChange = changesEntries[1];
+    } else {
+        firstChange = changesEntries[0];
+        lastChange = changesEntries[changesEntries.length - 1];
     }
 
     cardData.set("main_1", {
@@ -200,7 +203,7 @@ const getBarData = (
     prevAvg: { [key: string]: number },
     curAvg: { [key: string]: number },
     topN: number,
-    filter: string
+    filter: string,
 ) => {
     // Get first N of curAvg data
     const curAvgEntries = Object.entries(curAvg);
@@ -237,11 +240,11 @@ const getSortedAvgData = (prevData: any, curData: any, topN: number) => {
     const curAvg = averages(curData);
 
     const prevAvgSorted = Object.fromEntries(
-        Object.entries(prevAvg).sort(([, a], [, b]) => b - a)
+        Object.entries(prevAvg).sort(([, a], [, b]) => b - a),
     );
 
     const curAvgSorted = Object.fromEntries(
-        Object.entries(curAvg).sort(([, a], [, b]) => b - a)
+        Object.entries(curAvg).sort(([, a], [, b]) => b - a),
     );
 
     return { prevAvgSorted, curAvgSorted };
@@ -355,3 +358,6 @@ export const getLinePinedata = (data: any) => {
 
     return { lineData, pieData };
 };
+function elif(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
