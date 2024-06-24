@@ -153,13 +153,13 @@ const getCardsData = (prevAvg: any, curAvg: any) => {
 
     // Get the first and last k,v in changesSorted
     const changesEntries = Object.entries(changesSorted);
-    const firstChange = changesEntries[0];
-    let lastChange: [string, number];
 
-    if (Object.keys(prevAvg).length === 0 || Object.keys(curAvg).length === 0) {
+    if (changesEntries.length === 0) {
         return new Map();
     }
 
+    const firstChange = changesEntries[0];
+    let lastChange: [string, number];
     if (changesEntries[changesEntries.length - 1][1] < 0) {
         lastChange = changesEntries[changesEntries.length - 1];
     } else {

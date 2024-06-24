@@ -17,7 +17,7 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
     <ResponsiveLine
         curve="monotoneX"
         lineWidth={3}
-        margin={{ top: 20, right: 15, bottom: 68, left: 50 }}
+        margin={{ top: 20, right: 30, bottom: 55, left: 50 }}
         data={data}
         xFormat="time:%Y-%m-%d"
         yScale={{
@@ -31,7 +31,7 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Date",
+            // legend: "Date",
             legendOffset: 36,
             legendPosition: "middle",
             truncateTickAt: 0,
@@ -67,12 +67,12 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
                 direction: "row",
                 justify: false,
                 translateX: -20,
-                translateY: 69,
+                translateY: 56,
                 itemsSpacing: 10,
                 itemDirection: "left-to-right",
                 itemWidth: 65,
                 itemHeight: 20,
-                itemOpacity: 0.75,
+                itemOpacity: 1,
                 symbolSize: 16,
                 symbolShape: "circle",
                 symbolBorderColor: "rgba(0, 0, 0, .9)",
@@ -120,7 +120,7 @@ export const MyResponsiveLine: FC<MyResponsiveLineProps> = ({ data }) => (
                 text: {
                     fontSize: 12,
                     fontWeight: 600,
-                    // fill: "#4b5563",
+                    fill: "#4b5563",
                 },
             },
         }}
