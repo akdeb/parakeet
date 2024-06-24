@@ -235,6 +235,7 @@ const Charts: React.FC<ChartsProps> = async ({ user, toy, filter }) => {
                         <h2 className="my-4 text-lg font-bold text-gray-700">
                             Main Emotions
                         </h2>
+
                         <div className="flex space-x-3">
                             <div className="flex-grow">
                                 <TopCard
